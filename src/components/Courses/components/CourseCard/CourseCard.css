@@ -1,0 +1,7 @@
+
+.course_card{
+    margin:0 auto;   /* LIMITED */
+    width: 800px;   /* LIMITED */
+    padding: 20px;
+    border: 2px solid lightgreen;
+}
