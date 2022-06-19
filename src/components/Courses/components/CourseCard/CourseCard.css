@@ -1,6 +1,6 @@
 
 .course_card{
-    margin:0 auto;   /* LIMITED */
+    margin:0 auto 20px auto;   /* LIMITED */
     width: 800px;   /* LIMITED */
     padding: 20px;
     border: 2px solid lightgreen;
