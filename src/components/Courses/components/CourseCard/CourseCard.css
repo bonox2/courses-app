@@ -4,4 +4,30 @@
     width: 800px;   /* LIMITED */
     padding: 20px;
     border: 2px solid lightgreen;
+    display: flex;
+
+}
+.course_info{
+    width: 450px;
+}
+.course_name{
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.course_details{
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.parameter{
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+.parameter_info{
+    font-weight: normal;
 }

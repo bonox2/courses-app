@@ -2,4 +2,6 @@
     border: 2px solid plum;
     background: none;
     padding: 5px 25px;
+    width: min-content;
+    white-space: nowrap;
 }
