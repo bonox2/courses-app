@@ -2,6 +2,8 @@ import "./CourseCard.css";
 import Button from "../../../../common/Button/Button";
 import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
+import dateGenerator from "../../../../helpers/dateGenerator";
+
 
 export default function CourseCard({ course }) {
   const authorsNames = course.authors.map(
@@ -21,11 +23,11 @@ export default function CourseCard({ course }) {
         </div>
         <div className="parameter">
           <dt>Duration: </dt>
-          <dd className="parameter_info" id="duration">{pipeDuration()} </dd>
+          <dd className="parameter_info" >{pipeDuration(course.duration)} </dd>
         </div>
         <div className="parameter">
           <dt>Created: </dt>
-          <dd className="parameter_info"> {course.creationDate}</dd>
+          <dd className="parameter_info"> {dateGenerator(course.creationDate)}</dd>
         </div>
         <Button buttonText="Show course" />
       </dl>

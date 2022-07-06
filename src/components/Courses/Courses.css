@@ -1,0 +1,9 @@
+.search_bar_main{
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+    margin: 10px auto;
+}
+.search_bar_main btn{
+    line-height: 1;
+}
