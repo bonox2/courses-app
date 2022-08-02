@@ -10,7 +10,7 @@ export default function CreateCourse(){
             <div>
                 <div className="create_course_title">
                     <span>Title</span>
-                    <Input/>
+                    <Input placeHolderText="Enter title..."/>
                 </div>
                 <div className="create_course_description">
                     <span>Description</span>
@@ -19,11 +19,41 @@ export default function CreateCourse(){
             </div>
         </div>
         <div className="create_coutse_details">
-            <div className="create_course_add"></div>
-            <div className="create_course_added_list"></div>
+            <div className="create_course_add">
+                <h3>Add author</h3>
+                <span>Author name</span>
+                <Input placeHolderText="Enter author name..." className="input"/>
+                <Button buttonText="Create author"/>
+            </div>
+            <div className="create_course_add_list">
+                <h3>Authors</h3>
+                <div className="create_course_author_add">
+                    <div className="create_course_name"></div>
+                    <Button buttonText="Add author"/>
+                </div>
+                <div className="create_course_author_add">
+                    <div className="create_course_name"></div>
+                    <Button buttonText="Add author"/>
+                </div>
+                <div className="create_course_author_add">
+                    <div className="create_course_name"></div>
+                    <Button buttonText="Add author"/>
+                </div>
+                <div className="create_course_author_add">
+                    <div className="create_course_name"></div>
+                    <Button buttonText="Add author"/>
+                </div>
+
+            </div>
             <div className="create_course_duration"></div>
             <div className="create_course_list"></div>
         </div>
         </>
     )
 }
+
+
+
+
+
+

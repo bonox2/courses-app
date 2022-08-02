@@ -15,10 +15,10 @@ export default function Courses() {
     console.log(searchQuery);
   }, [searchQuery]);
   return (
-    <div className="body_section">
+    <>
       <div className="search_bar_main">
         <SearchBar setSearchQuery={setSearchQuery} />
-        <Button buttonText="Add new course" className="btn"/>
+        <Button buttonText="Add new course"/>
       </div>
       <div className="courses_list">
         {courses
@@ -29,6 +29,6 @@ export default function Courses() {
             <CourseCard key={course.id} course={course} />
           ))}
       </div>
-    </div>
+    </>
   );
 }

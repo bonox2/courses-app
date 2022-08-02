@@ -12,7 +12,7 @@ export default function SearchBar({setSearchQuery}){
     return(
         <form onSubmit={searchCourses} className="search_bar">
             <Input placeHolderText="Enter course name..." type="search" name="search" />
-            <Button buttonText="Search" type="submit" className="btn submit_btn"/>
+            <Button buttonText="Search" type="submit" />
         </form>
     )
 }

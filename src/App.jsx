@@ -10,7 +10,10 @@ export default function App() {
   return (
     <div className="App">
       <Header/>
-      <CreateCourse/>
+      <div className="body_section">
+        <Courses/>
+        <CreateCourse/>
+      </div>
     </div>
   );
 }

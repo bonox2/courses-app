@@ -1,12 +1,7 @@
 
-
-.input_label{
-    margin: 0 auto;
-    width: 450px;
-}
 .input{
     padding: 5px;
     background: none;
-    border: solid 2px yellow;
+    border: solid 2px orange;
     width: 100%;
 }
