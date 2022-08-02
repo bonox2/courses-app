@@ -1,14 +1,11 @@
 
 .course_card{
-    margin:0 auto 20px auto;   /* LIMITED */
-    width: 800px;   /* LIMITED */
     padding: 20px;
     border: 2px solid lightgreen;
     display: flex;
-
 }
-.course_info{
-    width: 450px;
+.course_card:not(:first-child){
+    margin-top: 20px;
 }
 .course_name{
     margin-bottom: 20px;

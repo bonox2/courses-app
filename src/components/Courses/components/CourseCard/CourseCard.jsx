@@ -12,7 +12,7 @@ export default function CourseCard({ course }) {
   ).join(",");
   return (
     <div className="course_card">
-      <div className="course_info">
+      <div>
         <h2 className="course_name">{course.title}</h2>
         <p>{course.description}</p>
       </div>
