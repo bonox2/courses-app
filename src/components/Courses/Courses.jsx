@@ -18,7 +18,7 @@ export default function Courses() {
     <div className="body_section">
       <div className="search_bar_main">
         <SearchBar setSearchQuery={setSearchQuery} />
-        <Button buttonText="Add new course" />
+        <Button buttonText="Add new course" className="btn"/>
       </div>
       <div className="courses_list">
         {courses

@@ -11,13 +11,16 @@
     margin-bottom: 20px;
     font-size: 24px;
 }
-
+.course_general{
+    width: 700px;
+}
 .course_details{
     width: 310px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 50px;
 }
 .parameter{
     width: 100%;

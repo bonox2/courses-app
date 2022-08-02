@@ -12,7 +12,7 @@ export default function CourseCard({ course }) {
   ).join(",");
   return (
     <div className="course_card">
-      <div>
+      <div className="course_general">
         <h2 className="course_name">{course.title}</h2>
         <p>{course.description}</p>
       </div>
@@ -29,7 +29,7 @@ export default function CourseCard({ course }) {
           <dt>Created: </dt>
           <dd className="parameter_info"> {dateGenerator(course.creationDate)}</dd>
         </div>
-        <Button buttonText="Show course" />
+        <Button buttonText="Show course" className="btn"/>
       </dl>
     </div>
   );

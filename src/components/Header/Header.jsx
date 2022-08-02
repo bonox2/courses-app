@@ -8,7 +8,7 @@ export default function Header(){
                 <Logo/>
                 <div className="user_name">
                     <div>Dave</div>
-                    <Button buttonText="Logout"/>
+                    <Button buttonText="Logout" className="btn"/>
                 </div>
         </header>
     )

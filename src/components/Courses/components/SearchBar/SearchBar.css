@@ -2,3 +2,6 @@
     display: flex;
     width: 450px;
 }
+.submit_btn{
+    margin-left: 20px;
+}
