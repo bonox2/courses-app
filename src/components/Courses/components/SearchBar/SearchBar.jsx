@@ -1,7 +1,7 @@
 import "./SearchBar.css";
 import Button from "../../../../common/Button/Button";
 import Input from "../../../../common/Input/Input";
-
+import toggleShown from "../../../../helpers/toggleShown";
 
 export default function SearchBar({setSearchQuery}){
     function searchCourses(event){
@@ -9,10 +9,12 @@ export default function SearchBar({setSearchQuery}){
         const searchQuery = event.target.search.value.trim().toLowerCase()
         setSearchQuery( searchQuery )
     }
+    
+
     return(
         <form onSubmit={searchCourses} className="search_bar">
             <Input placeHolderText="Enter course name..." type="search" name="search" />
-            <Button buttonText="Search" type="submit" />
+            <Button buttonText="Search" type="submit"/>
         </form>
     )
 }
