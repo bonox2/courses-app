@@ -1,0 +1,17 @@
+.create_course_section{
+}
+.create_coutse_general{
+    margin-bottom: 20px;
+}
+
+.create_coutse_details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.create_course_part{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 500px;
+}

@@ -1,6 +1,7 @@
 import "./SearchBar.css";
 import Button from "../../../../common/Button/Button";
 import Input from "../../../../common/Input/Input";
+// import toggleShown from './helpers/toggleShown';
 
 export default function SearchBar({setSearchQuery}){
     function searchCourses(event){
