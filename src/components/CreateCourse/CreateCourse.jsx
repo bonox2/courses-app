@@ -4,29 +4,26 @@ import Input from "../../common/Input/Input";
 
 export default function CreateCourse() {
   return (
-    <div className="create_course_section">
+    <div>
       <div className="create_coutse_general">
-        <div>
-          <div className="create_course_title">
             <span>Title</span>
-            <Input placeHolderText="Enter title..." />
-          </div>
-          <div className="create_course_description">
+            <div className="create_course_input_btn">
+                <Input placeHolderText="Enter title..." className="input create_course_input_short" />
+                <Button buttonText="Create course"/>
+            </div>
             <span>Description</span>
-            <textarea name="Create Course Description">
-              Enter description
+            <textarea name="Create Course Description" className="create_course_description">
+                Enter description...
             </textarea>
-          </div>
-        </div>
       </div>
       <div className="create_coutse_details">
-        <div className=" create_course_part    create_course_add">
+        <div className="create_course_part">
           <h3>Add author</h3>
-          <span>Author name</span>
-          <Input placeHolderText="Enter author name..." className="input" />
+          <span className="create_course_subtitle">Author name</span>
+          <Input placeHolderText="Enter author name..." className="input create_course_input_long" />
           <Button buttonText="Create author" />
         </div>
-        <div className="create_course_part    create_course_add_list">
+        <div className="create_course_part">
           <h3>Authors</h3>
           <div className="create_course_author_add">
             <div className="create_course_name">Vasiliy Dobkin</div>
@@ -45,18 +42,18 @@ export default function CreateCourse() {
             <Button buttonText="Add author" />
           </div>
         </div>
-        <div className="create_course_part    create_course_duration">
+        <div className="create_course_part">
           <h3>Duration</h3>
-          <span>Duration</span>
+          <span className="create_course_subtitle">Duration</span>
           <Input
             placeHolderText="Enter duration in minutes..."
-            className="input"
+            className="input create_course_input_long"
           />
           <div className="duration_time">
             Duration: <span>00:00 </span>hours
           </div>
         </div>
-        <div className="create_course_list">
+        <div className="create_course_part">
           <h3>Course authors</h3>
           <span>Author list is empty</span>
         </div>
