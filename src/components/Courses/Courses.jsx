@@ -8,7 +8,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 
 
-export default function Courses() {
+export default function Courses({setIsHidden}) {
   const [courses, setCourses] = useState(mockedCoursesList);
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Courses() {
     <>
       <div className="search_bar_main">
         <SearchBar setSearchQuery={setSearchQuery} />
-        <Button buttonText="Add new course"/>
+        <Button buttonText="Add new course" onClick={() => setIsHidden(false)}/>
       </div>
       <div className="courses_list">
         {courses

@@ -3,6 +3,7 @@ import Button from "../../common/Button/Button";
 import Input from "../../common/Input/Input";
 
 export default function CreateCourse() {
+    
   return (
     <div>
       <div className="create_coutse_general">

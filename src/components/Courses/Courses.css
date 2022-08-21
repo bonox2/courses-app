@@ -7,8 +7,10 @@
     line-height: 1;
 }
 .body_section{
-    height: 900px;
+    
     border: 2px solid aqua;
     border-top: none;
     padding: 20px;
+    padding-bottom: 200px;
+    margin-bottom: 50px;
 }

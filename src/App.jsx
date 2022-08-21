@@ -2,18 +2,18 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Courses from "./components/Courses/Courses";
 import CreateCourse from './components/CreateCourse/CreateCourse';
-// import toggleShown from './helpers/toggleShown';
+
 
 export default function App() {
-  
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div className="App">
       <Header/>
       <div className="body_section">
-          {/* {isShown && <Courses/>} */}
-          <CreateCourse/>
+      <button onClick={() => setIsHidden(!isHidden)}>asdasda</button>
+        {isHidden && <Courses setIsHidden={setIsHidden}/> }
+        {!isHidden && <CreateCourse/>}
       </div>
     </div>
   );
 }
-
