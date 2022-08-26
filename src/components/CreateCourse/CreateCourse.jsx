@@ -16,13 +16,14 @@ export default function CreateCourse() {
     console.log('Create new course');
   }
 
-  function handleNewAuthor(event) {
-    setNewAuthor(event.target.value)
-  }
+
   function createNewAuthor(event) {
     event.preventDefault();
-    setAllAuthors(handleNewAuthor);
-    console.log('Create new course');
+    setAllAuthors(prev => [...prev, newAuthor]);
+    console.log(newAuthor);
+  }
+  function handleNewAuthor(e) {
+    setNewAuthor((e.target.value))
   }
   
 
@@ -50,7 +51,6 @@ export default function CreateCourse() {
         <textarea
           name="Create Course Description"
           className="create_course_description"
-          value={'huhuhuh'}
         >
           Enter description...
         </textarea>
@@ -67,6 +67,9 @@ export default function CreateCourse() {
           />
           <Button buttonText="Create author" />
         </form>
+
+
+
         <div className="create_course_part">
           <h3>Authors</h3>
           {allAuthors.map((author) => (
@@ -76,6 +79,9 @@ export default function CreateCourse() {
             </div>
           ))}
         </div>
+
+
+
         <div className="create_course_part">
           <h3>Duration</h3>
           <span className="create_course_subtitle">Duration</span>
@@ -90,6 +96,10 @@ export default function CreateCourse() {
             Duration: {pipeDuration(duration)}
           </div>
         </div>
+
+
+
+
         <div className="create_course_part">
           <h3>Course authors</h3>
           {/* <span>Author list is empty</span> */}
