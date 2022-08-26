@@ -9,7 +9,10 @@ export default function CreateCourse() {
   const [duration, setDuration] = useState(0);
   const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
   const [courseAuthors, setCourseAuthors] = useState([]);
-  const [newAuthor, setNewAuthor]= useState('')
+  const [newAuthor, setNewAuthor]= useState({
+    id: '',
+    name: ''
+  })
 
   function createNewCourse(event) {
     event.preventDefault();
@@ -64,6 +67,7 @@ export default function CreateCourse() {
             className="input create_course_input_long"
             type="text"
             onChange={handleNewAuthor}
+            name="name"
           />
           <Button buttonText="Create author" />
         </form>
