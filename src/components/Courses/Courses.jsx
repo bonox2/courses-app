@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import "./Courses.css";
 import CourseCard from "./components/CourseCard/CourseCard";
-import { mockedCoursesList } from "../../constants";
 import { useState } from "react";
 import Button from "../../common/Button/Button";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 
 
-export default function Courses({setIsHidden}) {
-  const [courses, setCourses] = useState(mockedCoursesList);
+export default function Courses({setIsHidden, courses}) {
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     console.log(searchQuery);

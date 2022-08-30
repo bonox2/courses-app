@@ -8,7 +8,7 @@ import dateGenerator from "../../../../helpers/dateGenerator";
 export default function CourseCard({ course }) {
   const authorsNames = course.authors.map(
     (authorId) =>
-      mockedAuthorsList.find((author) => authorId === author.id).name
+      mockedAuthorsList.find((author) => authorId === author.id)?.name
   ).join(",");
   return (
     <div className="course_card">
