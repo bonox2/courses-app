@@ -12,7 +12,7 @@
     font-size: 24px;
 }
 .course_general{
-    width: 700px;
+    width: 100%;
 }
 .course_details{
     width: 310px;
@@ -33,4 +33,49 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+@media (max-width:1199.98px){
+} 
+@media (max-width:991.98px){
+}
+@media (max-width:767.98px){
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .user_name{
+        margin: 15px 0 0 0;
+        width: 100%;
+    }
+    .search_bar_main{
+        flex-wrap: wrap;
+    }
+    .search_bar .btn{
+        padding: 0 5px  ;
+    }
+    .search_bar_main > .btn{
+        margin: 15px auto ;
+    }
+    .course_card{
+        flex-direction: column;
+    }
+    .course_general{
+        margin-bottom: 30px;
+    }
+    .course_desc{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+    }
+    .course_details{
+        width: auto;
+        margin-left: 0;
+    }
+}
+@media (max-width:575.98px){
+}
+@media (max-width:320px){
 }

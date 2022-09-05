@@ -10,12 +10,14 @@ export default function App() {
   const [courses, setCourses] = useState(mockedCoursesList);
   return (
     <div className="App">
-      <Header />
-      <div className="body_section">
-        {isHidden && <Courses setIsHidden={setIsHidden} courses={courses} />}
-        {!isHidden && (
-          <CreateCourse setIsHidden={setIsHidden} setCourses={setCourses} />
-        )}
+      <div className="container">
+        <Header />
+        <div className="body_section">
+          {isHidden && <Courses setIsHidden={setIsHidden} courses={courses} />}
+          {!isHidden && (
+            <CreateCourse setIsHidden={setIsHidden} setCourses={setCourses} />
+          )}
+        </div>
       </div>
     </div>
   );

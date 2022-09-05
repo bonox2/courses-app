@@ -75,7 +75,7 @@ export default function CreateCourse({setIsHidden, setCourses}) {
         >
         </textarea>
       </form>
-      <div className="create_coutse_details">
+      <div className="create_course_details">
         <form className="create_course_part" onSubmit={createNewAuthor}>
           <h3>Add author</h3>
           <span className="create_course_subtitle">Author name</span>

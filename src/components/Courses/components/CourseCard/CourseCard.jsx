@@ -14,7 +14,7 @@ export default function CourseCard({ course }) {
     <div className="course_card">
       <div className="course_general">
         <h2 className="course_name">{course.title}</h2>
-        <p>{course.description}</p>
+        <p className="course_desc">{course.description}</p>
       </div>
       <dl className="course_details">
         <div className="parameter">
