@@ -4,6 +4,10 @@ import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
 import CreateCourse from './components/CreateCourse/CreateCourse';
 import { mockedCoursesList } from './constants';
+import { Routes, Route } from 'react-router-dom';
+
+
+
 
 export default function App() {
   const [isHidden, setIsHidden] = useState(true);
@@ -13,6 +17,13 @@ export default function App() {
       <div className="container">
         <Header />
         <div className="body_section">
+          <Routes>
+            <Route path='/create-course' element={<CreateCourse/>}/>
+          </Routes>
+
+
+
+
           {isHidden && <Courses setIsHidden={setIsHidden} courses={courses} />}
           {!isHidden && (
             <CreateCourse setIsHidden={setIsHidden} setCourses={setCourses} />

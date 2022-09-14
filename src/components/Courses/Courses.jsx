@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import "./Courses.css";
 import CourseCard from "./components/CourseCard/CourseCard";
 import { useState } from "react";
-import Button from "../../common/Button/Button";
 import SearchBar from "./components/SearchBar/SearchBar";
+import { Link } from "react-router-dom";
 
 
 
-export default function Courses({setIsHidden, courses}) {
+export default function Courses({ courses}) {
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     console.log(searchQuery);
@@ -16,7 +16,7 @@ export default function Courses({setIsHidden, courses}) {
     <>
       <div className="search_bar_main">
         <SearchBar setSearchQuery={setSearchQuery} />
-        <Button buttonText="Add new course" onClick={() => setIsHidden(false)}/>
+        <Link to="/create-course">Add new course</Link>
       </div>
       <div className="courses_list">
         {courses

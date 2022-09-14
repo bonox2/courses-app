@@ -4,6 +4,7 @@ import Input from '../../common/Input/Input';
 import { useState } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
 import { mockedAuthorsList } from '../../constants';
+import { Link } from "react-router-dom";
 
 export default function CreateCourse({setIsHidden, setCourses}) {
   const [duration, setDuration] = useState(0);
@@ -64,7 +65,7 @@ export default function CreateCourse({setIsHidden, setCourses}) {
             name="title"
             required
           />
-          <Button buttonText="Create course" />
+          <Link to="/">Create course</Link>
         </div>
         <span>Description</span>
         <textarea
