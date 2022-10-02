@@ -4,9 +4,10 @@ import Input from '../../common/Input/Input';
 import { useState } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
 import { mockedAuthorsList } from '../../constants';
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-export default function CreateCourse({setIsHidden, setCourses}) {
+export default function CreateCourse({setCourses}) {
+  const history = useHistory()
   const [duration, setDuration] = useState(0);
   const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
   const [courseAuthors, setCourseAuthors] = useState([]);
@@ -31,7 +32,7 @@ export default function CreateCourse({setIsHidden, setCourses}) {
     }
     console.log('Create new course', newCourse);
     setCourses(p => [...p, newCourse]);
-    setIsHidden(true)
+    history.push('/courses')
   }
 
   function createNewAuthor(event) {
@@ -56,7 +57,7 @@ export default function CreateCourse({setIsHidden, setCourses}) {
 
   return (
     <div>
-      <form className="create_coutse_general" onSubmit={createNewCourse}>
+      <form className="create_course_general" onSubmit={createNewCourse}>
         <span>Title</span>
         <div className="create_course_input_btn">
           <Input
@@ -65,7 +66,7 @@ export default function CreateCourse({setIsHidden, setCourses}) {
             name="title"
             required
           />
-          <Link to="/">Create course</Link>
+          <button type='submit'>Create course</button>
         </div>
         <span>Description</span>
         <textarea

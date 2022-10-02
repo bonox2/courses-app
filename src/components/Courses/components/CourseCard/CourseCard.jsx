@@ -3,6 +3,7 @@ import Button from "../../../../common/Button/Button";
 import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
 import dateGenerator from "../../../../helpers/dateGenerator";
+import { Link } from "react-router-dom";
 
 
 export default function CourseCard({ course }) {
@@ -29,7 +30,7 @@ export default function CourseCard({ course }) {
           <dt>Created: </dt>
           <dd className="parameter_info"> {dateGenerator(course.creationDate)}</dd>
         </div>
-        <Button buttonText="Show course" className="btn"/>
+        <Link to={`/courses/${course.id}`} className="btn">Show course</Link>
       </dl>
     </div>
   );

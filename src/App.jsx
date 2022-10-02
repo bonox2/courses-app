@@ -1,34 +1,20 @@
 import './App.css';
-import { useState } from 'react';
 import Header from './components/Header/Header';
 import Courses from './components/Courses/Courses';
-import CreateCourse from './components/CreateCourse/CreateCourse';
-import { mockedCoursesList } from './constants';
-import { Routes, Route } from 'react-router-dom';
-
-
-
+import { Switch, Route } from 'react-router-dom';
 
 export default function App() {
-  const [isHidden, setIsHidden] = useState(true);
-  const [courses, setCourses] = useState(mockedCoursesList);
   return (
     <div className="App">
       <div className="container">
         <Header />
-        <div className="body_section">
-          <Routes>
-            <Route path='/create-course' element={<CreateCourse/>}/>
-          </Routes>
-
-
-
-
-          {isHidden && <Courses setIsHidden={setIsHidden} courses={courses} />}
-          {!isHidden && (
-            <CreateCourse setIsHidden={setIsHidden} setCourses={setCourses} />
-          )}
-        </div>
+        <main>
+          <Switch>
+            <Route path="/courses">
+              <Courses/>
+            </Route>
+          </Switch>
+        </main>
       </div>
     </div>
   );
