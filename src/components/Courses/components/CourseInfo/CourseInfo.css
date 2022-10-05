@@ -1,0 +1,28 @@
+
+
+.course_info_main{
+    margin-top: 30px;
+    border: 2px solid lightskyblue;
+    padding: 20px 30px;
+}
+.course_info_title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+    font-size: 36px;
+    margin: 20px 0 70px 0 ;
+}
+.course_info_description_main{
+    display: flex;
+    justify-content: space-between;
+}
+.course_info_text{
+    width: 600px;
+}
+.course_info_list li{
+    margin-bottom: 10px;
+}
+.course_info_list li>span{
+    font-weight: bold;
+}
