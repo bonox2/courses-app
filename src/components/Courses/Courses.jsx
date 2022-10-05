@@ -20,7 +20,7 @@ export default function Courses() {
           <div className="body_section">
             <div className="search_bar_main">
               <SearchBar setSearchQuery={setSearchQuery} />
-              <Link to="/courses/add">Add new course</Link>
+              <Link to="/courses/add" className='btn'>Add new course</Link>
             </div>
             <div className="courses_list">
               {courses

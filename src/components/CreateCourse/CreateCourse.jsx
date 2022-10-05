@@ -1,10 +1,10 @@
 import './CreateCourse.css';
-import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import { useState } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
 import { mockedAuthorsList } from '../../constants';
 import { useHistory } from "react-router-dom";
+import Button from '../../common/Button/Button';
 
 export default function CreateCourse({setCourses}) {
   const history = useHistory()
@@ -66,7 +66,7 @@ export default function CreateCourse({setCourses}) {
             name="title"
             required
           />
-          <button type='submit'>Create course</button>
+          <Button buttonText="Create course" type='submit'></Button>
         </div>
         <span>Description</span>
         <textarea

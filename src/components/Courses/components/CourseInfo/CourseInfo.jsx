@@ -14,12 +14,12 @@ export default function CourseInfo({ courses }) {
   const authorsNames = courseInfo.authors.map(
     (authorId) =>
       mockedAuthorsList.find((author) => authorId === author.id)?.name
-  ).join(", ");
+  ).join(" ");
   return (
   <>
       <section className="course_info_main">
         <div className="container">
-          <Link to="/courses" className="course_info_btn">Back to courses</Link>
+          <Link to="/courses" className="course_info_btn" >&lt; Back to courses</Link>
           <h2 className='course_info_title'>{courseInfo.title}</h2>
           <div className="course_info_description_main">
             <p className='course_info_text'>{courseInfo.description}</p>

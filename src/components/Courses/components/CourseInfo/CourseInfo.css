@@ -26,3 +26,10 @@
 .course_info_list li>span{
     font-weight: bold;
 }
+.course_info_btn{
+        background: none;
+        width: min-content;
+        white-space: nowrap;
+        text-decoration: none;
+        color: black;
+}
