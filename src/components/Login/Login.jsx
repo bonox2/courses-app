@@ -6,7 +6,10 @@ import { signIn } from '../../services';
 
 export default function Login() {
     function logIn(){
-        signIn()
+        signIn({
+            email: '',
+            password: ''
+        })
 }
     return (
     <>
@@ -16,9 +19,9 @@ export default function Login() {
                 <h2 className="authorization_title">Login</h2>
                 <form className='authorization_form'>
                     <label for="email">Email</label>
-                    <Input required className="create_course_input_short input" type="text" name="email"></Input>
+                    <Input required className="create_course_input_short input" type="text" name="email" placeHolderText="Enter your email"></Input>
                     <label for="password">Password</label>
-                    <Input required className="create_course_input_short input" type="text" name="password"></Input>
+                    <Input required className="create_course_input_short input" type="text" name="password" placeHolderText="Enter your password"></Input>
                     <Button type="submit" buttonText="Login" onClick={logIn}></Button>
                 </form>
                 <span>If you do not have an account you can <Link to="/Registration" className="link_style" >Registration</Link></span>
