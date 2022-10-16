@@ -2,8 +2,12 @@ import './Registration.css';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import { Link } from 'react-router-dom';
+import { signUp } from '../../services';
 
 export default function Registration() {
+    function Registr(){
+        signUp()
+}
     return (
     <>
         <section className="reg">
@@ -11,13 +15,13 @@ export default function Registration() {
             <div className="reg_main">
                 <h2 className="authorization_title">Registration</h2>
                 <form className='authorization_form'>
-                    <label for="fname">Name</label>
-                    <Input className="create_course_input_short input" type="text" name="fname" value="Enter name"></Input>
-                    <label for="fname">Email</label>
-                    <Input className="create_course_input_short input" type="text" name="fname" value="Enter email"></Input>
-                    <label for="lname">Password</label>
-                    <Input className="create_course_input_short input" type="text" name="lname" value="Enter password"></Input>
-                    <Button type="submit" buttonText="Registartion"></Button>
+                    <label for="name">Name</label>
+                    <Input required className="create_course_input_short input" type="text" name="name"></Input>
+                    <label for="email">Email</label>
+                    <Input required className="create_course_input_short input" type="text" name="email" ></Input>
+                    <label for="password">Password</label>
+                    <Input required className="create_course_input_short input" type="text" name="password" ></Input>
+                    <Button type="submit" buttonText="Registartion" onClick={Registr}></Button>
                 </form>
                 <span>If you have an account you can <Link to="/login" className="link_style" >Login</Link></span>
             </div>
