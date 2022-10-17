@@ -4,9 +4,12 @@ import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
 import dateGenerator from "../../../../helpers/dateGenerator";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 export default function CourseCard({ course }) {
+  const state = useSelector(state => state)
+  console.log(state);
   const authorsNames = course.authors.map(
     (authorId) =>
       mockedAuthorsList.find((author) => authorId === author.id)?.name
