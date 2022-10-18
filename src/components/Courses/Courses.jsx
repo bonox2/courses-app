@@ -5,7 +5,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { Switch, Route, Link } from 'react-router-dom';
 import CreateCourse from '../CreateCourse/CreateCourse';
 import { mockedCoursesList } from '../../constants';
-import CourseInfo from './components/CourseInfo/CourseInfo';
+import CourseInfo from '../CourseInfo/CourseInfo';
 
 export default function Courses() {
   const [courses, setCourses] = useState(mockedCoursesList);

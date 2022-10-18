@@ -52,10 +52,10 @@
     font-weight: 500;
 }
 
-.create_course_input_short{
+.input_short{
     width: 250px;
 }
-.create_course_input_long{
+.input_long{
     width: 500px;
 }
 @media (max-width:1199.98px){

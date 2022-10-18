@@ -20,22 +20,22 @@ export default function Login() {
     }
   return (
     <>
-      <section className="reg">
+      <section className="authorization">
         <div className="container">
-          <div className="reg_main">
+          <div className="authorization_main">
             <h2 className="authorization_title">Login</h2>
             <form className="authorization_form" onSubmit={logIn}>
               <label for="email">Email</label>
               <Input
                 required
-                className="create_course_input_short input"
+                className="input_short input"
                 type="email"
                 name="email"
                 placeHolderText="Enter your email"></Input>
               <label for="password">Password</label>
               <Input
                 required
-                className="create_course_input_short input"
+                className="input_short input"
                 type="password"
                 name="password"
                 placeHolderText="Enter your password"></Input>
