@@ -20,19 +20,21 @@ export default function Header() {
         history.push('/login')
     });
   }, []);
-
-  function logOut() {
-    signOut();
-  }
-  function logIn() {
-    signIn({email: 'user2@user.com', password: '123456'});
-  }
+    function logOut(e) {
+      e.preventDefault();
+      signOut({
+      })
+        .then((json) => {
+          console.log(json);
+          history.push('/login');
+        })
+        .catch((err) => alert(err));
+    }
   return (
     <header className="header">
       <Logo />
       <div className="user_name">
         <div>{userName}</div>
-        <Button buttonText="test login" onClick={logIn} />
         {userName && <Button buttonText="Logout" onClick={logOut} />}
       </div>
     </header>
