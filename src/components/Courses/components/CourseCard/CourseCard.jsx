@@ -1,15 +1,14 @@
 import "./CourseCard.css";
-import Button from "../../../../common/Button/Button";
 import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
 import dateGenerator from "../../../../helpers/dateGenerator";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getCounter } from "../../../../redux/counter/selectors";
 
 
 export default function CourseCard({ course }) {
-  const state = useSelector(state => state)
-  console.log(state);
+  const counter = useSelector(getCounter)
   const authorsNames = course.authors.map(
     (authorId) =>
       mockedAuthorsList.find((author) => authorId === author.id)?.name
@@ -17,6 +16,7 @@ export default function CourseCard({ course }) {
   return (
     <div className="course_card">
       <div className="course_general">
+        {counter}
         <h2 className="course_name">{course.title}</h2>
         <p className="course_desc">{course.description}</p>
       </div>

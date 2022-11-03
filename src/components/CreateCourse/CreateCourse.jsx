@@ -5,8 +5,11 @@ import pipeDuration from '../../helpers/pipeDuration';
 import { mockedAuthorsList } from '../../constants';
 import { useHistory } from "react-router-dom";
 import Button from '../../common/Button/Button';
+import { useDispatch } from 'react-redux';
+import { addNewCourse } from '../../redux/courses/actionCreators';
 
-export default function CreateCourse({setCourses}) {
+export default function CreateCourse() {
+  const dispatch = useDispatch()
   const history = useHistory()
   const [duration, setDuration] = useState(0);
   const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
@@ -31,7 +34,7 @@ export default function CreateCourse({setCourses}) {
       authors: courseAuthors.map(courseAuthor => courseAuthor.id),
     }
     console.log('Create new course', newCourse);
-    setCourses(p => [...p, newCourse]);
+    dispatch(addNewCourse(newCourse))
     history.push('/courses')
   }
 

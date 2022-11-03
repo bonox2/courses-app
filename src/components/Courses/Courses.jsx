@@ -4,11 +4,13 @@ import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import { Switch, Route, Link } from 'react-router-dom';
 import CreateCourse from '../CreateCourse/CreateCourse';
-import { mockedCoursesList } from '../../constants';
+// import { mockedCoursesList } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
+import { useSelector } from 'react-redux';
+import { getCourses } from '../../redux/courses/selectors';
 
 export default function Courses() {
-  const [courses, setCourses] = useState(mockedCoursesList);
+  const courses = useSelector(getCourses)
   const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     console.log(searchQuery);
@@ -36,7 +38,7 @@ export default function Courses() {
           </div>
         </Route>
         <Route path="/courses/add">
-          <CreateCourse setCourses={setCourses}/>
+          <CreateCourse/>
         </Route>
         <Route path="/courses/:courseId">
           <CourseInfo courses={courses}/>
