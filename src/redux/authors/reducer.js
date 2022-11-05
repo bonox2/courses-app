@@ -20,10 +20,10 @@ const initialState = [{
 ];
 
 export function authorsReducer(state = initialState, action) {
-  // switch (action.type) {
-  //   case ADD_COURSE:
-  //     return [...state, action.payload]
-  //   default:
-  //     return state;
-  // }
+  switch (action.type) {
+    // case ADD_COURSE:
+    //   return [...state, action.payload]
+    default:
+      return state;
+  }
 }

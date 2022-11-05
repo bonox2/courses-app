@@ -2,18 +2,25 @@ import './CreateCourse.css';
 import Input from '../../common/Input/Input';
 import { useState } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
-import { mockedAuthorsList } from '../../constants';
+// import { mockedAuthorsList } from '../../constants';
 import { useHistory } from "react-router-dom";
 import Button from '../../common/Button/Button';
 import { useDispatch } from 'react-redux';
 import { addNewCourse } from '../../redux/courses/actionCreators';
+import { useSelector } from 'react-redux';
+import { getAuthors } from '../../redux/authors/selectors';
+
+
 
 export default function CreateCourse() {
   const dispatch = useDispatch()
   const history = useHistory()
   const [duration, setDuration] = useState(0);
-  const [allAuthors, setAllAuthors] = useState(mockedAuthorsList);
   const [courseAuthors, setCourseAuthors] = useState([]);
+
+
+  const [allAuthors1, setAllAuthors] = useState();
+  const allAuthors = useSelector(getAuthors)
 
   function createNewCourse(event) {
     event.preventDefault();
