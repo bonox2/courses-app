@@ -1,5 +1,5 @@
 // import { ADD_COURSE } from './actionTypes';
-
+import { ADD_AUTHOR } from "./actionTypes";
 
 const initialState = [{
   id: '27cc3006-e93a-4748-8ca8-73d06aa93b6d',
@@ -21,8 +21,8 @@ const initialState = [{
 
 export function authorsReducer(state = initialState, action) {
   switch (action.type) {
-    // case ADD_COURSE:
-    //   return [...state, action.payload]
+    case ADD_AUTHOR:
+      return [...state, action.payload]
     default:
       return state;
   }

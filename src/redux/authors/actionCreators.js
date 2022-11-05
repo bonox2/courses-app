@@ -1,9 +1,9 @@
-// import { ADD_COURSE } from "./actionTypes"
+import { ADD_AUTHOR } from "./actionTypes"
 
 
-// export function addNewCourse(newCourse) {
-//   return {
-//     type: ADD_COURSE,
-//     payload: newCourse
-//   }
-// }
+export function addNewAuthor(newAuthor) {
+  return {
+    type: ADD_AUTHOR,
+    payload: newAuthor
+  }
+}

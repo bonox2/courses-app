@@ -2,14 +2,13 @@ import './CreateCourse.css';
 import Input from '../../common/Input/Input';
 import { useState } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
-// import { mockedAuthorsList } from '../../constants';
 import { useHistory } from "react-router-dom";
 import Button from '../../common/Button/Button';
 import { useDispatch } from 'react-redux';
 import { addNewCourse } from '../../redux/courses/actionCreators';
 import { useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
-
+import { addNewAuthor } from '../../redux/authors/actionCreators';
 
 
 export default function CreateCourse() {
@@ -51,7 +50,7 @@ export default function CreateCourse() {
       id: `${Date.now()}`,
       name: event.target.name.value.trim(),
     };
-    setAllAuthors((prev) => [...prev, newAuthor]);
+    dispatch(addNewAuthor(newAuthor))
     console.log(newAuthor);
     event.target.reset();
   }
