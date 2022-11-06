@@ -1,7 +1,7 @@
 import Logo from './components/Logo/Logo';
 import Button from '../../common/Button/Button';
 import './Header.css';
-import { signOut, getUserData, signIn } from '../../services';
+import { signOut, getUserData} from '../../services';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

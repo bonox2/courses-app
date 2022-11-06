@@ -7,18 +7,18 @@ import Button from '../../common/Button/Button';
 import { useDispatch } from 'react-redux';
 import { addNewCourse } from '../../redux/courses/actionCreators';
 import { useSelector } from 'react-redux';
-import { getAuthors } from '../../redux/authors/selectors';
-import { addNewAuthor } from '../../redux/authors/actionCreators';
+import { getAuthors, getCourseAuthors } from '../../redux/authors/selectors';
+import { addNewAuthor, addListAuthor, deleteListAuthor, addCourseAuthor,deleteCourseAuthor } from '../../redux/authors/actionCreators';
 
 
 export default function CreateCourse() {
   const dispatch = useDispatch()
   const history = useHistory()
   const [duration, setDuration] = useState(0);
-  const [courseAuthors, setCourseAuthors] = useState([]);
+  // const [courseAuthors, setCourseAuthors] = useState([]);
+  const courseAuthors = useSelector(getCourseAuthors)
 
-
-  const [allAuthors1, setAllAuthors] = useState();
+  // const [allAuthors, setAllAuthors] = useState();
   const allAuthors = useSelector(getAuthors)
 
   function createNewCourse(event) {
@@ -50,19 +50,30 @@ export default function CreateCourse() {
       id: `${Date.now()}`,
       name: event.target.name.value.trim(),
     };
+    // setAllAuthors((prev) => [...prev, newAuthor]);
     dispatch(addNewAuthor(newAuthor))
     console.log(newAuthor);
     event.target.reset();
   }
 
   function addAuthorToCourse(author) {
-    setAllAuthors(allAuthors.filter(({ id }) => id !== author.id));
-    setCourseAuthors((prev) => [...prev, author]);
-  }
-  function deleteAuthorToCourse(author) {
-    setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
-    setAllAuthors((prev) => [...prev, author]);
-  }
+      dispatch(addListAuthor(allAuthors.filter(({ id }) => id !== author.id)))
+      dispatch(addCourseAuthor(author))
+    }
+    function deleteAuthorFromCourse(author) {
+      dispatch(deleteListAuthor(author))
+      dispatch(deleteCourseAuthor(courseAuthors.filter(({ id }) => id !== author.id)))
+    }
+
+
+  // // function addAuthorToCourse(author) {
+  //   setAllAuthors(allAuthors.filter(({ id }) => id !== author.id));
+  //   setCourseAuthors((prev) => [...prev, author]);
+  // }
+  // function deleteAuthorToCourse(author) {
+  //   setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
+  //   setAllAuthors((prev) => [...prev, author]);
+  // }
 
   return (
     <div>
@@ -135,7 +146,7 @@ export default function CreateCourse() {
               <div className="create_course_name">{author.name}</div>
               <Button
                 buttonText="Delete author"
-                onClick={() => deleteAuthorToCourse(author)}
+                onClick={() => deleteAuthorFromCourse(author)}
               />
             </div>
           ))}
