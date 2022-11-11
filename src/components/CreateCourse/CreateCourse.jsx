@@ -1,34 +1,45 @@
 import './CreateCourse.css';
 import Input from '../../common/Input/Input';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useDispatch } from 'react-redux';
 import { addNewCourse } from '../../redux/courses/actionCreators';
 import { useSelector } from 'react-redux';
-import { getAuthors, getCourseAuthors } from '../../redux/authors/selectors';
-import { addNewAuthor, addListAuthor, deleteListAuthor, addCourseAuthor,deleteCourseAuthor } from '../../redux/authors/actionCreators';
-
+import { getAuthors } from '../../redux/authors/selectors';
+import {
+  addNewAuthor,
+} from '../../redux/authors/actionCreators';
+import { createNewAuthor } from '../../redux/authors/thunk';
 
 export default function CreateCourse() {
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [duration, setDuration] = useState(0);
-  // const [courseAuthors, setCourseAuthors] = useState([]);
-  const courseAuthors = useSelector(getCourseAuthors)
+  const [courseAuthors, setCourseAuthors] = useState([]);
 
   // const [allAuthors, setAllAuthors] = useState();
-  const allAuthors = useSelector(getAuthors)
+  const allAuthors = useSelector(getAuthors);
+
+  const availableAuthors = useMemo(
+    () =>
+      allAuthors.filter((author) => {
+        return !courseAuthors.find(
+          (courseAuthor) => courseAuthor.id === author.id
+        );
+      }),
+    [allAuthors, courseAuthors]
+  );
 
   function createNewCourse(event) {
     event.preventDefault();
     if (courseAuthors.length === 0) {
-      alert("Please select at least one author");
+      alert('Please select at least one author');
       return;
     }
     if (duration === 0) {
-      alert("Please enter duration");
+      alert('Please enter duration');
       return;
     }
     const newCourse = {
@@ -37,43 +48,33 @@ export default function CreateCourse() {
       description: event.target.description.value.trim(),
       creationDate: new Date().toLocaleDateString(),
       duration,
-      authors: courseAuthors.map(courseAuthor => courseAuthor.id),
-    }
+      authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
+    };
     console.log('Create new course', newCourse);
-    dispatch(addNewCourse(newCourse))
-    history.push('/courses')
+    dispatch(addNewCourse(newCourse));
+    
+    history.push('/courses');
   }
 
   function createNewAuthor(event) {
     event.preventDefault();
     const newAuthor = {
       id: `${Date.now()}`,
-      name: event.target.name.value.trim(),
+      name: event.target.name.value.trim()
     };
     // setAllAuthors((prev) => [...prev, newAuthor]);
-    dispatch(addNewAuthor(newAuthor))
+    dispatch(addNewAuthor(newAuthor));
+    // dispatch(createNewAuthor(newAuthor))
     console.log(newAuthor);
     event.target.reset();
   }
 
   function addAuthorToCourse(author) {
-      dispatch(addListAuthor(allAuthors.filter(({ id }) => id !== author.id)))
-      dispatch(addCourseAuthor(author))
-    }
-    function deleteAuthorFromCourse(author) {
-      dispatch(deleteListAuthor(author))
-      dispatch(deleteCourseAuthor(courseAuthors.filter(({ id }) => id !== author.id)))
-    }
-
-
-  // // function addAuthorToCourse(author) {
-  //   setAllAuthors(allAuthors.filter(({ id }) => id !== author.id));
-  //   setCourseAuthors((prev) => [...prev, author]);
-  // }
-  // function deleteAuthorToCourse(author) {
-  //   setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
-  //   setAllAuthors((prev) => [...prev, author]);
-  // }
+    setCourseAuthors((prev) => [...prev, author]);
+  }
+  function deleteAuthorFromCourse(author) {
+    setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
+  }
 
   return (
     <div>
@@ -86,16 +87,14 @@ export default function CreateCourse() {
             name="title"
             required
           />
-          <Button buttonText="Create course" type='submit'></Button>
+          <Button buttonText="Create course" type="submit"></Button>
         </div>
         <span>Description</span>
         <textarea
           placeholder="Enter description..."
           className="create_course_description"
           name="description"
-          required
-        >
-        </textarea>
+          required></textarea>
       </form>
       <div className="create_course_details">
         <form className="create_course_part" onSubmit={createNewAuthor}>
@@ -112,7 +111,7 @@ export default function CreateCourse() {
 
         <div className="create_course_part">
           <h3>Authors</h3>
-          {allAuthors.map((author) => (
+          {availableAuthors.map((author) => (
             <div key={author.id} className="create_course_author_add">
               <div className="create_course_name">{author.name}</div>
               <Button
