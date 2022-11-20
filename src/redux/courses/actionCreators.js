@@ -1,9 +1,9 @@
-import { ADD_COURSE } from "./actionTypes"
+import { ADD_COURSE} from "./actionTypes"
 
 
-export function addNewCourse(newCourse) {
+export function addNewCourse(course) {
   return {
     type: ADD_COURSE,
-    payload: newCourse
+    payload: course
   }
 }

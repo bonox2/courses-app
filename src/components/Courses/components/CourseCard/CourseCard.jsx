@@ -3,12 +3,18 @@ import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
 import dateGenerator from "../../../../helpers/dateGenerator";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { getCounter } from "../../../../redux/counter/selectors";
-
+import Button from "../../../../common/Button/Button";
+import { getAuthors } from "../../../../redux/authors/selectors";
+import { useDispatch, useSelector } from 'react-redux';
+import {deleteCourse} from '../../../../redux/courseFunctions/actionCreators';
+import { getDelete } from "../../../../redux/courseFunctions/selectors";
 
 export default function CourseCard({ course }) {
-  const counter = useSelector(getCounter)
+  const dispatch = useDispatch();
+  const courseDelete = useSelector(getDelete);
+
+
+  const allAuthors = useSelector(getAuthors);
   const authorsNames = course.authors.map(
     (authorId) =>
       mockedAuthorsList.find((author) => authorId === author.id)?.name
@@ -16,7 +22,6 @@ export default function CourseCard({ course }) {
   return (
     <div className="course_card">
       <div className="course_general">
-        {counter}
         <h2 className="course_name">{course.title}</h2>
         <p className="course_desc">{course.description}</p>
       </div>
@@ -33,7 +38,11 @@ export default function CourseCard({ course }) {
           <dt>Created: </dt>
           <dd className="parameter_info"> {dateGenerator(course.creationDate)}</dd>
         </div>
-        <Link to={`/courses/${course.id}`} className="btn">Show course</Link>
+        <div className="buttons_section">
+          <Link to={`/courses/${course.id}`} className="btn">Show course</Link>
+          <Link to="/courses/add" className="btn">&#128393;</Link>
+          <Button buttonText="	&#128465;" onClick={() => {dispatch(deleteCourse())}}></Button>
+        </div>
       </dl>
     </div>
   );

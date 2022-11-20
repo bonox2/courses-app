@@ -34,6 +34,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.buttons_section{
+    display: flex;
+    gap: 10px;
+}
+.buttons_section button:not(:first-child){
+    width:30px;
+    padding:  0 0 ;
+}
 @media (max-width:1199.98px){
 } 
 @media (max-width:991.98px){

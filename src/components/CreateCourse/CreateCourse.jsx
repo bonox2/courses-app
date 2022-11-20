@@ -4,13 +4,10 @@ import { useState, useMemo } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
 import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button/Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { addNewCourse } from '../../redux/courses/actionCreators';
-import { useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
-import {
-  addNewAuthor,
-} from '../../redux/authors/actionCreators';
+import { addNewAuthor} from '../../redux/authors/actionCreators';
 import { createNewAuthor } from '../../redux/authors/thunk';
 
 export default function CreateCourse() {

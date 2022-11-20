@@ -4,7 +4,6 @@ import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import { Switch, Route, Link } from 'react-router-dom';
 import CreateCourse from '../CreateCourse/CreateCourse';
-// import { mockedCoursesList } from '../../constants';
 import CourseInfo from '../CourseInfo/CourseInfo';
 import { useSelector } from 'react-redux';
 import { getCourses } from '../../redux/courses/selectors';
