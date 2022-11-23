@@ -5,15 +5,22 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { Switch, Route, Link } from 'react-router-dom';
 import CreateCourse from '../CreateCourse/CreateCourse';
 import CourseInfo from '../CourseInfo/CourseInfo';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCourses } from '../../redux/courses/selectors';
+import { getCoursesThunk } from '../../redux/courses/thunk';
 
 export default function Courses() {
+  const dispatch = useDispatch()
   const courses = useSelector(getCourses)
   const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     console.log(searchQuery);
   }, [searchQuery]);
+  
+  useEffect(() => {
+    dispatch(getCoursesThunk())
+  }, [])
+  
   return (
     <>
       <Switch>

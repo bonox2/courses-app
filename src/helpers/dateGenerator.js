@@ -2,7 +2,5 @@
 
 
 export default function dateGenerator(date){
-    return(
-        new Date(date).toLocaleDateString("uk")
-    )
+    return date.replaceAll('/', '.')
 }

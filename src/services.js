@@ -1,4 +1,31 @@
+import axios from "axios";
 const URL = 'http://localhost:4000';
+
+const coursesApi  = axios.create({
+  baseURL: `${URL}/courses`,
+  headers:{
+    Authorization: window.localStorage.getItem('token')
+  }
+})
+// const authorsApi  = axios.create({
+//   baseURL: `${URL}/courses`,
+//   headers:{
+//     Authorization: window.localStorage.getItem('token')
+//   }
+// })
+
+export function getCourses() {
+  return coursesApi.get('/all')
+}
+
+export function createCourse(newCourse) {
+  return coursesApi.post('/add', newCourse)
+}
+
+
+
+
+
 
 export async function signIn(userData) {
   const response = await fetch(URL + '/login', {

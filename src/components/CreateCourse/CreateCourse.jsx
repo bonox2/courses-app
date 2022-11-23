@@ -9,6 +9,7 @@ import { addNewCourse } from '../../redux/courses/actionCreators';
 import { getAuthors } from '../../redux/authors/selectors';
 import { addNewAuthor} from '../../redux/authors/actionCreators';
 import { createNewAuthor } from '../../redux/authors/thunk';
+import { addNewCourseThunk } from '../../redux/courses/thunk';
 
 export default function CreateCourse() {
   const dispatch = useDispatch();
@@ -40,15 +41,15 @@ export default function CreateCourse() {
       return;
     }
     const newCourse = {
-      id: `${Date.now()}`,
+      // id: `${Date.now()}`,
       title: event.target.title.value.trim(),
       description: event.target.description.value.trim(),
-      creationDate: new Date().toLocaleDateString(),
+      creationDate: new Date().toLocaleDateString('en'),
       duration,
       authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
     };
     console.log('Create new course', newCourse);
-    dispatch(addNewCourse(newCourse));
+    dispatch(addNewCourseThunk(newCourse));
     
     history.push('/courses');
   }

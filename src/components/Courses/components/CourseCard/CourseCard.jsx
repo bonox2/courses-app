@@ -17,7 +17,7 @@ export default function CourseCard({ course }) {
   const allAuthors = useSelector(getAuthors);
   const authorsNames = course.authors.map(
     (authorId) =>
-      mockedAuthorsList.find((author) => authorId === author.id)?.name
+    allAuthors.find((author) => authorId === author.id)?.name
   ).join(",");
   return (
     <div className="course_card">
