@@ -10,6 +10,8 @@ import { getAuthors } from '../../redux/authors/selectors';
 import { addNewAuthor} from '../../redux/authors/actionCreators';
 import { createNewAuthor } from '../../redux/authors/thunk';
 import { addNewCourseThunk } from '../../redux/courses/thunk';
+import {addNewAuthorThunk, getAuthorsThunk} from '../../redux/authors/thunk';
+
 
 export default function CreateCourse() {
   const dispatch = useDispatch();
@@ -61,7 +63,7 @@ export default function CreateCourse() {
       name: event.target.name.value.trim()
     };
     // setAllAuthors((prev) => [...prev, newAuthor]);
-    dispatch(addNewAuthor(newAuthor));
+    dispatch(addNewAuthorThunk(newAuthor));
     // dispatch(createNewAuthor(newAuthor))
     console.log(newAuthor);
     event.target.reset();

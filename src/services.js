@@ -30,7 +30,7 @@ export function getAuthors() {
   return authorsApi.get('/all')
 }
  
-export function addNewAuthor(newAuthor) {
+export function createdNewAuthor(newAuthor) {
   return authorsApi.post('/add', newAuthor)
 }
 

@@ -1,4 +1,4 @@
-import { ADD_AUTHOR,SET_AUTHOR } from './actionTypes';
+import { ADD_AUTHOR,SET_AUTHORS } from './actionTypes';
 
 const initialState = [
   { name: 'author', id: '9b87e8b8-6ba5-40fc-a439-c4e30a373d36' },
@@ -11,7 +11,7 @@ const initialState = [
 
 export function authorsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_AUTHOR:
+    case SET_AUTHORS:
       return action.payload;
     case ADD_AUTHOR:
       return [...state, action.payload];

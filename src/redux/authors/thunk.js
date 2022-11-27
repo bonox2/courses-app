@@ -1,5 +1,5 @@
 import { addNewAuthor,setAuthors } from "./actionCreators"
-import { createCourse, getAuthors } from '../../services';
+import { createdNewAuthor, getAuthors } from '../../services';
 
 
 export function getAuthorsThunk() {
@@ -17,26 +17,16 @@ export function getAuthorsThunk() {
     }
 }
 export function addNewAuthorThunk(newAuthor) {
-    return (dispatch) => {
-      addNewAuthor(newAuthor)
+    return async (dispatch) => {
+      createdNewAuthor(newAuthor)
         .then((response) => {
-          dispatch(addNewCourse(response.data.result));
+          dispatch(addNewAuthor(response.data.result));
         })
         .catch((error) => {
           alert('Creating course error!');
           console.log(error);
         });
+        // const createdNewAuthor = await fetch()
+        // dispatch(addNewAuthor(createdNewAuthor))
     };
   }
-export function addNewCourseThunk(course) {
-  return (dispatch) => {
-    createCourse(course)
-      .then((response) => {
-        dispatch(addNewCourse(response.data.result));
-      })
-      .catch((error) => {
-        alert('Creating course error!');
-        console.log(error);
-      });
-  };
-}
