@@ -1,14 +1,42 @@
-import { addNewAuthor } from "./actionCreators"
+import { addNewAuthor,setAuthors } from "./actionCreators"
+import { createCourse, getAuthors } from '../../services';
 
 
-export function createNewAuthor(newAuthor) {
+export function getAuthorsThunk() {
     return async (dispatch) => {
-
-        //...do your async work (like fetch)
-        //fetch('/create-author, newAuthor)...
-        //wait for response
-        // and then you should call the regular dispatch with action object
+        getAuthors()
+        .then((response) => {
+          dispatch(setAuthors(response.data.result));
+        })
+        .catch((error) => {
+          alert('Getting courses error!');
+          console.log(error);
+        });
         const createdNewAuthor = await fetch()
         dispatch(addNewAuthor(createdNewAuthor))
     }
+}
+export function addNewAuthorThunk(newAuthor) {
+    return (dispatch) => {
+      addNewAuthor(newAuthor)
+        .then((response) => {
+          dispatch(addNewCourse(response.data.result));
+        })
+        .catch((error) => {
+          alert('Creating course error!');
+          console.log(error);
+        });
+    };
+  }
+export function addNewCourseThunk(course) {
+  return (dispatch) => {
+    createCourse(course)
+      .then((response) => {
+        dispatch(addNewCourse(response.data.result));
+      })
+      .catch((error) => {
+        alert('Creating course error!');
+        console.log(error);
+      });
+  };
 }

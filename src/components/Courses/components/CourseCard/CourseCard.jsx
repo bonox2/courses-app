@@ -1,18 +1,14 @@
 import "./CourseCard.css";
-import { mockedAuthorsList } from "../../../../constants";
 import pipeDuration from "../../../../helpers/pipeDuration";
 import dateGenerator from "../../../../helpers/dateGenerator";
 import { Link } from "react-router-dom";
 import Button from "../../../../common/Button/Button";
 import { getAuthors } from "../../../../redux/authors/selectors";
 import { useDispatch, useSelector } from 'react-redux';
-import {deleteCourse} from '../../../../redux/courseFunctions/actionCreators';
-import { getDelete } from "../../../../redux/courseFunctions/selectors";
+import { removeCourseThunk } from "../../../../redux/courses/thunk";
 
 export default function CourseCard({ course }) {
   const dispatch = useDispatch();
-  const courseDelete = useSelector(getDelete);
-
 
   const allAuthors = useSelector(getAuthors);
   const authorsNames = course.authors.map(
@@ -41,7 +37,7 @@ export default function CourseCard({ course }) {
         <div className="buttons_section">
           <Link to={`/courses/${course.id}`} className="btn">Show course</Link>
           <Link to="/courses/add" className="btn">&#128393;</Link>
-          <Button buttonText="	&#128465;" onClick={() => {dispatch(deleteCourse())}}></Button>
+          <Button buttonText="	&#128465;" onClick={() => {dispatch(removeCourseThunk())}}></Button>
         </div>
       </dl>
     </div>

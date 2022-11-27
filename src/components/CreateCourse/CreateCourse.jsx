@@ -41,7 +41,7 @@ export default function CreateCourse() {
       return;
     }
     const newCourse = {
-      // id: `${Date.now()}`,
+      // id: `${Date.now()}`, 
       title: event.target.title.value.trim(),
       description: event.target.description.value.trim(),
       creationDate: new Date().toLocaleDateString('en'),

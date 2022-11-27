@@ -1,7 +1,5 @@
 import { ADD_COURSE, REMOVE_COURSE, SET_COURSES} from "./actionTypes"
 
-
-
 export function setCourses(courses) {
   return {
     type: SET_COURSES,

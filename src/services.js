@@ -7,20 +7,35 @@ const coursesApi  = axios.create({
     Authorization: window.localStorage.getItem('token')
   }
 })
-// const authorsApi  = axios.create({
-//   baseURL: `${URL}/courses`,
-//   headers:{
-//     Authorization: window.localStorage.getItem('token')
-//   }
-// })
-
 export function getCourses() {
   return coursesApi.get('/all')
 }
-
+ 
 export function createCourse(newCourse) {
   return coursesApi.post('/add', newCourse)
 }
+
+export function removeCourse(id) {
+  return coursesApi.delete(`/${id}`)
+}
+
+
+const authorsApi  = axios.create({
+  baseURL: `${URL}/authors`,
+  headers:{
+    Authorization: window.localStorage.getItem('token')
+  }
+})
+export function getAuthors() {
+  return authorsApi.get('/all')
+}
+ 
+export function addNewAuthor(newAuthor) {
+  return authorsApi.post('/add', newAuthor)
+}
+
+
+
 
 
 
