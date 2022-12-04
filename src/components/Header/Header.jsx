@@ -12,7 +12,10 @@ export default function Header() {
   const userData = useSelector(getUserData)
 
   useEffect(() => {
-    dispatch(getUserDataThunk());
+    const token = localStorage.getItem('token');
+    if(token) {
+      dispatch(getUserDataThunk())
+    }
   }, []);
 
   function logOut(e) {
