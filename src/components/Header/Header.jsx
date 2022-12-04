@@ -1,42 +1,25 @@
 import Logo from './components/Logo/Logo';
 import Button from '../../common/Button/Button';
 import './Header.css';
-import { signOut, getUserData} from '../../services';
-import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLogOutThunk } from '../../redux/user/thunk';
+import { getUserData } from '../../redux/user/selectors';
+
 
 export default function Header() {
   const dispatch = useDispatch();
-  const [userName, setUserName] = useState(null);
-  const history = useHistory();
-  useEffect(() => {
-    getUserData()
-      .then((userData) => {
-        console.log(userData);
-        setUserName(userData.result.name);
-        history.push('/courses');
-      })
-      .catch((error) => {
-        console.log(error);
-        history.push('/login');
-      });
-  }, []);
+  const userData = useSelector(getUserData)
+
   function logOut(e) {
     e.preventDefault();
-    signOut({})
-      .then((json) => {
-        console.log(json);
-        history.push('/login');
-      })
-      .catch((err) => alert(err));
+    dispatch(setLogOutThunk())
   }
   return (
     <header className="header">
       <Logo />
       <div className="user_name">
-        <div>{userName}</div>
-        {userName && <Button buttonText="Logout" onClick={logOut} />}
+        <div>{userData.name}</div>
+        {userData.isAuth && <Button buttonText="Logout" onClick={logOut} />}
       </div>
     </header>
   );

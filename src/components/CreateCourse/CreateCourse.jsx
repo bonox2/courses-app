@@ -1,17 +1,13 @@
 import './CreateCourse.css';
 import Input from '../../common/Input/Input';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
 import { useHistory } from 'react-router-dom';
 import Button from '../../common/Button/Button';
-import { useDispatch,useSelector } from 'react-redux';
-import { addNewCourse } from '../../redux/courses/actionCreators';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
-import { addNewAuthor} from '../../redux/authors/actionCreators';
-import { createNewAuthor } from '../../redux/authors/thunk';
 import { addNewCourseThunk } from '../../redux/courses/thunk';
-import {addNewAuthorThunk, getAuthorsThunk} from '../../redux/authors/thunk';
-
+import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
 
 export default function CreateCourse() {
   const dispatch = useDispatch();
@@ -19,7 +15,6 @@ export default function CreateCourse() {
   const [duration, setDuration] = useState(0);
   const [courseAuthors, setCourseAuthors] = useState([]);
 
-  // const [allAuthors, setAllAuthors] = useState();
   const allAuthors = useSelector(getAuthors);
 
   const availableAuthors = useMemo(
@@ -32,6 +27,10 @@ export default function CreateCourse() {
     [allAuthors, courseAuthors]
   );
 
+  useEffect(() => {
+    dispatch(getAuthorsThunk());
+  }, []);
+
   function createNewCourse(event) {
     event.preventDefault();
     if (courseAuthors.length === 0) {
@@ -43,7 +42,7 @@ export default function CreateCourse() {
       return;
     }
     const newCourse = {
-      // id: `${Date.now()}`, 
+      // id: `${Date.now()}`,
       title: event.target.title.value.trim(),
       description: event.target.description.value.trim(),
       creationDate: new Date().toLocaleDateString('en'),
@@ -52,7 +51,7 @@ export default function CreateCourse() {
     };
     console.log('Create new course', newCourse);
     dispatch(addNewCourseThunk(newCourse));
-    
+
     history.push('/courses');
   }
 
@@ -62,9 +61,7 @@ export default function CreateCourse() {
       id: `${Date.now()}`,
       name: event.target.name.value.trim()
     };
-    // setAllAuthors((prev) => [...prev, newAuthor]);
     dispatch(addNewAuthorThunk(newAuthor));
-    // dispatch(createNewAuthor(newAuthor))
     console.log(newAuthor);
     event.target.reset();
   }

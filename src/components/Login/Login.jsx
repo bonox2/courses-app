@@ -2,22 +2,22 @@ import './Login.css';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
 import { Link, useHistory } from 'react-router-dom';
-import { signIn } from '../../services';
+import { useDispatch } from 'react-redux';
+import { setLogInThunk } from '../../redux/user/thunk';
+
 export default function Login() {
-    const history = useHistory();
-    function logIn(e) {
-      e.preventDefault();
-      const form = e.target;
-      signIn({
+  const dispatch = useDispatch();
+  const history = useHistory();
+  function logIn(e) {
+    e.preventDefault();
+    const form = e.target;
+    dispatch(
+      setLogInThunk({
         email: form.email.value.trim(),
         password: form.password.value.trim()
       })
-        .then((json) => {
-          console.log(json);
-          history.push('/courses');
-        })
-        .catch((err) => alert(err));
-    }
+    );
+  }
   return (
     <>
       <section className="authorization">
@@ -39,7 +39,7 @@ export default function Login() {
                 type="password"
                 name="password"
                 placeHolderText="Enter your password"></Input>
-              <Button type="submit" buttonText="Login" ></Button>
+              <Button type="submit" buttonText="Login"></Button>
             </form>
             <span>
               If you do not have an account you can{' '}

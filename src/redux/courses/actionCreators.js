@@ -12,7 +12,7 @@ export function addNewCourse(course) {
     payload: course
   }
 }
-export function removeCourse(courseId) {
+export function deleteCourse(courseId) {
   return {
     type: REMOVE_COURSE,
     payload: courseId

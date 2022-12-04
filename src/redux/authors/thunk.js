@@ -12,8 +12,6 @@ export function getAuthorsThunk() {
           alert('Getting courses error!');
           console.log(error);
         });
-        const createdNewAuthor = await fetch()
-        dispatch(addNewAuthor(createdNewAuthor))
     }
 }
 export function addNewAuthorThunk(newAuthor) {
@@ -26,7 +24,5 @@ export function addNewAuthorThunk(newAuthor) {
           alert('Creating course error!');
           console.log(error);
         });
-        // const createdNewAuthor = await fetch()
-        // dispatch(addNewAuthor(createdNewAuthor))
     };
   }

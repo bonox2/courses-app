@@ -1,5 +1,5 @@
 import { createCourse, getCourses, removeCourse } from '../../services';
-import { addNewCourse, setCourses } from './actionCreators';
+import { addNewCourse, setCourses, deleteCourse } from './actionCreators';
 
 export function getCoursesThunk() {
     return (dispatch) => {
@@ -29,11 +29,11 @@ export function addNewCourseThunk(course) {
 export function removeCourseThunk(id) {
   return (dispatch) => {
     removeCourse(id)
-      .then((response) => {
-        dispatch(removeCourse(response.data.result));
+      .then(() => {
+        dispatch(deleteCourse(id));
       })
       .catch((error) => {
-        alert('Deleating course error!');
+        alert('Deleting course error!');
         console.log(error);
       });
   };

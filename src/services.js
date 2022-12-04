@@ -1,62 +1,56 @@
-import axios from "axios";
+import axios from 'axios';
 const URL = 'http://localhost:4000';
 
-const coursesApi  = axios.create({
+const coursesApi = axios.create({
   baseURL: `${URL}/courses`,
-  headers:{
+  headers: {
     Authorization: window.localStorage.getItem('token')
   }
-})
+});
 export function getCourses() {
-  return coursesApi.get('/all')
+  return coursesApi.get('/all');
 }
- 
+
 export function createCourse(newCourse) {
-  return coursesApi.post('/add', newCourse)
+  return coursesApi.post('/add', newCourse);
 }
 
 export function removeCourse(id) {
-  return coursesApi.delete(`/${id}`)
+  return coursesApi.delete(`/${id}`);
 }
 
-
-const authorsApi  = axios.create({
+const authorsApi = axios.create({
   baseURL: `${URL}/authors`,
-  headers:{
+  headers: {
     Authorization: window.localStorage.getItem('token')
   }
-})
+});
 export function getAuthors() {
-  return authorsApi.get('/all')
+  return authorsApi.get('/all');
 }
- 
+
 export function createdNewAuthor(newAuthor) {
-  return authorsApi.post('/add', newAuthor)
+  return authorsApi.post('/add', newAuthor);
 }
 
+const api = axios.create({
+  baseURL: URL
+});
 
-
-
-
-
-
-
-
+export async function register(userData) {
+  return api.post('/login', userData);
+}
 export async function signIn(userData) {
-  const response = await fetch(URL + '/login', {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify(userData)
-  });
-  if (!response.ok) {
-    return Promise.reject('Auth error');
-  }
-  const json = await response.json();
-  window.localStorage.setItem('token', json.result);
-  return json;
+  return api.post('/login', userData);
 }
+export async function signOut() {
+  return api.delete('/logout', {
+    headers: {
+      Authorization: window.localStorage.getItem('token')
+    }
+  });
+}
+
 export async function signUp(userData) {
   const response = await fetch(URL + '/register', {
     method: 'POST',
@@ -70,19 +64,6 @@ export async function signUp(userData) {
     return Promise.reject(json.errors[0]);
   }
   return json;
-}
-export async function signOut() {
-  const response = await fetch(URL + '/logout', {
-    method: 'DELETE',
-    headers: {
-      Authorization: window.localStorage.getItem('token')
-    }
-  });
-  if (!response.ok) {
-    return Promise.reject('Logout error');
-  }
-  window.localStorage.removeItem('token');
-  return true;
 }
 
 export async function getUserData() {
