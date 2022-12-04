@@ -1,4 +1,4 @@
-import { signIn, signOut } from '../../services';
+import { signIn, signOut, getUserData } from '../../services';
 import { setLogIn, setLogOut } from './actionCreators';
 
 export function setLogInThunk(userCredentials) {
@@ -9,6 +9,25 @@ export function setLogInThunk(userCredentials) {
           token: response.data.result,
           name: response.data.user.name,
           email: response.data.user.email
+        };
+        dispatch(setLogIn(userData))
+        window.localStorage.setItem('token', userData.token)
+      })
+      .catch((error) => {
+        alert('Log in error');
+        console.log(error);
+      });
+  };
+}
+export function getUserDataThunk(userCredentials) {
+  return (dispatch) => {
+    getUserData(userCredentials)
+      .then((response) => {
+        const userData = {
+          result:{
+            name: response.data.user.name,
+            email: response.data.user.email
+          }
         };
         dispatch(setLogIn(userData))
         window.localStorage.setItem('token', userData.token)

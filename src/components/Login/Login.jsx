@@ -43,7 +43,7 @@ export default function Login() {
             </form>
             <span>
               If you do not have an account you can{' '}
-              <Link to="/Registration" className="link_style">
+              <Link to="/registration" className="link_style">
                 Registration
               </Link>
             </span>
