@@ -1,13 +1,12 @@
 import './Login.css';
 import Button from '../../common/Button/Button';
 import Input from '../../common/Input/Input';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLogInThunk } from '../../redux/user/thunk';
 
 export default function Login() {
   const dispatch = useDispatch();
-  const history = useHistory();
   function logIn(e) {
     e.preventDefault();
     const form = e.target;
@@ -25,14 +24,14 @@ export default function Login() {
           <div className="authorization_main">
             <h2 className="authorization_title">Login</h2>
             <form className="authorization_form" onSubmit={logIn}>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <Input
                 required
                 className="input_short input"
                 type="email"
                 name="email"
                 placeHolderText="Enter your email"></Input>
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <Input
                 required
                 className="input_short input"

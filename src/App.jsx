@@ -4,7 +4,7 @@ import Courses from './components/Courses/Courses';
 import { Switch, Route } from 'react-router-dom';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
-
+import ProtectedRoute from './hoc/ProtectedRoute';
 
 export default function App() {
   return (
@@ -14,13 +14,15 @@ export default function App() {
         <main>
           <Switch>
             <Route path="/courses">
-              <Courses/>
+              <Courses />
             </Route>
             <Route path="/login">
-              <Login/>
+              <Login />
             </Route>
-            <Route path="/Registration">
-              <Registration/>
+            <Route path="/registration">
+              <ProtectedRoute>
+                <Registration />
+              </ProtectedRoute>
             </Route>
           </Switch>
         </main>

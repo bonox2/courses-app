@@ -27,21 +27,21 @@ export default function Registration() {
           <div className="authorization_main">
             <h2 className="authorization_title">Registration</h2>
             <form className="authorization_form" onSubmit={Registration}>
-              <label for="name">Name</label>    
+              <label htmlFor="name">Name</label>    
               <Input
                 required
                 className="input_short input"
                 type="text"
                 name="name"
                 placeHolderText="Enter your name"></Input>
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
               <Input
                 required
                 className="input_short input"
                 type="email"
                 name="email"
                 placeHolderText="Enter your email"></Input>
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
               <Input
                 required
                 className="input_short input"

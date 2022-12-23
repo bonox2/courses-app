@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import Auth from './hoc/Auth';
 
 console.log(store.getState());
 
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Auth>
+        <App />
+      </Auth>
     </Provider>
   </BrowserRouter>
 );
