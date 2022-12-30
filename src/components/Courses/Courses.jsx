@@ -5,6 +5,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { Switch, Route, Link } from "react-router-dom";
 import CreateCourse from "../CreateCourse/CreateCourse";
 import CourseInfo from "../CourseInfo/CourseInfo";
+import UpdateCourse from "../UpdateCourse/UpdateCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourses } from "../../redux/courses/selectors";
 import { getCoursesThunk } from "../../redux/courses/thunk";
@@ -54,6 +55,9 @@ export default function Courses() {
         </Route>
         <Route path="/courses/:courseId">
           <CourseInfo courses={courses} />
+        </Route>
+        <Route path="/courses/update/:courseId">
+          <UpdateCourse courses={courses} />
         </Route>
       </Switch>
     </>

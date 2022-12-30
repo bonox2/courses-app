@@ -9,6 +9,7 @@ import { getAuthors } from '../../redux/authors/selectors';
 import { addNewCourseThunk } from '../../redux/courses/thunk';
 import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
 
+
 export default function CreateCourse() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -72,12 +73,13 @@ export default function CreateCourse() {
   function deleteAuthorFromCourse(author) {
     setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
   }
-
+  
   return (
     <div>
       <form className="create_course_general" onSubmit={createNewCourse}>
         <span>Title</span>
         <div className="create_course_input_btn">
+        
           <Input
             placeHolderText="Enter title..."
             className="input create_course_input_short"
@@ -136,8 +138,7 @@ export default function CreateCourse() {
 
         <div className="create_course_part">
           <h3>Course authors</h3>
-          {/* <span>Author list is empty</span> */}
-          {courseAuthors.map((author) => (
+          {courseAuthors.length === 0 ? (<span>Author list is empty</span>) : (courseAuthors.map((author) => (
             <div key={author.id} className="create_course_author_add">
               <div className="create_course_name">{author.name}</div>
               <Button
@@ -145,7 +146,7 @@ export default function CreateCourse() {
                 onClick={() => deleteAuthorFromCourse(author)}
               />
             </div>
-          ))}
+          ))) }
         </div>
       </div>
     </div>

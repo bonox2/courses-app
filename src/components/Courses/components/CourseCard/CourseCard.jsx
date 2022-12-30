@@ -44,7 +44,7 @@ export default function CourseCard({ course }) {
             Show course
           </Link>
           {userData.role === "admin" && (<>
-            <Link to="/courses/add" className="btn">
+            <Link to={`/courses/update/${course.id}`} className="btn">
               &#128393;
             </Link>
             <Button

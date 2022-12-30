@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Button from '../../common/Button/Button';
 import { mockedAuthorsList } from "../../constants";
 import './CourseInfo.css';
 import { Link } from 'react-router-dom';

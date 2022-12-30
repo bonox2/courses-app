@@ -18,6 +18,9 @@ export function createCourse(newCourse) {
 export function removeCourse(id) {
   return coursesApi.delete(`/${id}`);
 }
+export function editCourse(id) {
+  return coursesApi.put(`/update/${id}`);
+}
 
 const authorsApi = axios.create({
   baseURL: `${URL}/authors`,
