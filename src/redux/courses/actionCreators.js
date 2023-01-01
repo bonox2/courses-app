@@ -1,4 +1,4 @@
-import { ADD_COURSE, REMOVE_COURSE, SET_COURSES,} from "./actionTypes"
+import { ADD_COURSE, REMOVE_COURSE, SET_COURSES,UPDATE_COURSE} from "./actionTypes"
 
 export function setCourses(courses) {
   return {

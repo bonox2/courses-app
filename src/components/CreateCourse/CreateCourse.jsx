@@ -2,21 +2,22 @@ import './CreateCourse.css';
 import Input from '../../common/Input/Input';
 import { useState, useMemo, useEffect } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
-import { useHistory } from 'react-router-dom';
+import { useHistory,useParams } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
 import { addNewCourseThunk } from '../../redux/courses/thunk';
 import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
 
-
-export default function CreateCourse() {
+export default function CreateCourse({ courses }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [duration, setDuration] = useState(0);
   const [courseAuthors, setCourseAuthors] = useState([]);
-
   const allAuthors = useSelector(getAuthors);
+  // const { courseId } = useParams();
+  // const courseInfo = courses.find((course) => course.id === courseId);
+
 
   const availableAuthors = useMemo(
     () =>
@@ -81,7 +82,7 @@ export default function CreateCourse() {
         <div className="create_course_input_btn">
         
           <Input
-            placeHolderText="Enter title..."
+            placeHolderText="asdasdasdasda"
             className="input create_course_input_short"
             name="title"
             required
