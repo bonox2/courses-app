@@ -49,17 +49,17 @@ export default function Courses() {
             </div>
           </div>
         </Route>
-        <Route path="/courses/add">
+        <Route exact path="/courses/add">
           <ProtectedRoute>
             <CreateCourse />
           </ProtectedRoute>
         </Route>
-        <Route path="/courses/:courseId">
+        <Route exact path="/courses/:courseId">
           <CourseInfo courses={courses} />
         </Route>
-        <Route path="/courses/update/:courseId">
+        <Route exact path="/courses/update/:courseId">
           <ProtectedRoute>
-            <CreateCourse courses={courses} />
+            <CreateCourse />
           </ProtectedRoute>
         </Route>
       </Switch>

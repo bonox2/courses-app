@@ -6,7 +6,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
-import { addNewCourseThunk , updateCourseThunk} from '../../redux/courses/thunk';
+import {
+  addNewCourseThunk,
+  updateCourseThunk
+} from '../../redux/courses/thunk';
 import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
 import { getCourse } from '../../services';
 
@@ -16,30 +19,26 @@ export default function CreateCourse() {
   const [duration, setDuration] = useState(0);
   const [courseAuthors, setCourseAuthors] = useState([]);
   const allAuthors = useSelector(getAuthors);
-  const [courseInfo, setCourseInfo] = useState(null)
+  const [courseInfo, setCourseInfo] = useState(null);
   const { courseId } = useParams();
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [authors, setAuthors] = useState('')
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     if (courseId) {
-       getCourse().then((response) => {
+      getCourse(courseId).then((response) => {
         setCourseInfo(response.data.result);
       });
     }
-  }, [courseId])
-
+  }, [courseId]);
 
   useEffect(() => {
-    if(courseInfo){
-      setTitle(courseInfo.title)
-      setDescription(courseInfo.description)
-      setAuthors(courseInfo.authors)
+    if (courseInfo && allAuthors.length > 0) {
+      setTitle(courseInfo.title);
+      setDescription(courseInfo.description);
+      setCourseAuthors(courseInfo.authors.map(courseAuthorId => allAuthors.find(author => author.id === courseAuthorId)))
     }
-  }, [courseInfo])
-  
-  
+  }, [courseInfo, allAuthors]);
 
   const availableAuthors = useMemo(
     () =>
@@ -65,24 +64,24 @@ export default function CreateCourse() {
       alert('Please enter duration');
       return;
     }
-    if(!courseInfo){
+    if (!courseInfo) {
       const newCourse = {
         title,
         description,
         creationDate: new Date().toLocaleDateString('en'),
         duration,
-        authors
+        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
       };
       console.log('Create new course', newCourse);
       dispatch(addNewCourseThunk(newCourse));
-    } else{
+    } else {
       const updateCourseData = {
-        title, 
+        title,
         description,
         duration,
         authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
-      }
-      dispatch(updateCourseThunk(courseInfo.id, updateCourseData))
+      };
+      dispatch(updateCourseThunk(courseInfo.id, updateCourseData));
     }
     history.push('/courses');
   }
@@ -116,7 +115,7 @@ export default function CreateCourse() {
             name="title"
             required
             value={title}
-            onChange={e => setTitle(e.target.value().trim())}
+            onChange={(e) => setTitle(e.target.value.trim())}
           />
           <Button buttonText="Create course" type="submit"></Button>
         </div>
@@ -127,9 +126,7 @@ export default function CreateCourse() {
           name="description"
           required
           value={description}
-          onChange={e => setDescription(e.target.value().trim())} 
-          >
-        </textarea>
+          onChange={(e) => setDescription(e.target.value.trim())}></textarea>
       </form>
       <div className="create_course_details">
         <form className="create_course_part" onSubmit={createNewAuthor}>
