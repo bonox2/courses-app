@@ -4,8 +4,6 @@ import { authorsReducer } from "./authors/reducer";
 import thunk from "redux-thunk";
 import { userReducer } from "./user/reducer";
 
-
-
 const rootReducer = combineReducers({
     user: userReducer,
     courses: coursesReducer,

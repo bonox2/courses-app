@@ -1,9 +1,14 @@
-import './Login.css';
-import Button from '../../common/Button/Button';
-import Input from '../../common/Input/Input';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import Button from '../../common/Button/Button';
+import Input from '../../common/Input/Input';
+
 import { setLogInThunk } from '../../redux/user/thunk';
+
+import './Login.css';
+
+
 
 export default function Login() {
   const dispatch = useDispatch();

@@ -10,7 +10,9 @@ const coursesApi = axios.create({
 export function getCourses() {
   return coursesApi.get('/all');
 }
-
+export function getCourse(id) {
+  return coursesApi.get(`/${id}`);
+}
 export function createCourse(newCourse) {
   return coursesApi.post('/add', newCourse);
 }
@@ -18,8 +20,8 @@ export function createCourse(newCourse) {
 export function removeCourse(id) {
   return coursesApi.delete(`/${id}`);
 }
-export function editCourse(id) {
-  return coursesApi.put(`/courses/${id}`);
+export function editCourse(id, updateData) {
+  return coursesApi.put(`/courses/${id}`, updateData);
 }
 
 const authorsApi = axios.create({

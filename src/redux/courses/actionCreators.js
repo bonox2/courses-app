@@ -18,9 +18,9 @@ export function deleteCourse(courseId) {
     payload: courseId
   }
 }
-export function updateCourse(courseId) {
+export function updateCourse(updatedCourse) {
   return {
     type: UPDATE_COURSE,
-    payload: courseId
+    payload: updatedCourse
   }
 }

@@ -1,10 +1,12 @@
-import './App.css';
-import Header from './components/Header/Header';
-import Courses from './components/Courses/Courses';
 import { Switch, Route } from 'react-router-dom';
-import Registration from './components/Registration/Registration';
+
+import Courses from './components/Courses/Courses';
+import Header from './components/Header/Header';
 import Login from './components/Login/Login';
-import ProtectedRoute from './hoc/ProtectedRoute';
+import Registration from './components/Registration/Registration';
+
+import './App.css';
+
 
 export default function App() {
   return (
@@ -20,9 +22,7 @@ export default function App() {
               <Login />
             </Route>
             <Route path="/registration">
-              <ProtectedRoute>
-                <Registration />
-              </ProtectedRoute>
+              <Registration />
             </Route>
           </Switch>
         </main>

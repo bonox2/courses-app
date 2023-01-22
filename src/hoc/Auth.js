@@ -4,14 +4,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { getUserData } from '../redux/user/selectors';
 import { getUserDataThunk } from '../redux/user/thunk';
 
-export default function Auth({ children,course }) {
+export default function Auth({ children }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const {pathname} = useLocation()
   const { isAuth, isLoading } = useSelector(getUserData);
-  const userData = useSelector(getUserData)
-
-  console.log({pathname});
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,6 +17,7 @@ export default function Auth({ children,course }) {
     } else {
       history.replace('/login');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -34,17 +32,7 @@ export default function Auth({ children,course }) {
         history.replace('/login');
         return
     }
-  }, [isAuth, pathname, isLoading]);
-
-  // useEffect(() => {
-  //   if(isLoading){
-  //       return
-  //   }
-  //   if (userData.role === "user" && pathname === `/courses/update/${course.id}`){
-  //       history.replace('/courses');
-  //       return
-  //   }
-  // }, [pathname, isLoading]);
+  }, [isAuth, pathname, isLoading, history]);
 
   return <>{children}</>;
 }

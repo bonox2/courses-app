@@ -38,11 +38,11 @@ export function removeCourseThunk(id) {
       });
   };
 }
-export function updateCourseThunk(id) {
+export function updateCourseThunk(id, updateData) {
   return (dispatch) => {
-    editCourse(id)
-      .then(() => {
-        dispatch(updateCourse(id));
+    editCourse(id, updateData)
+      .then((response) => {
+        dispatch(updateCourse(response.data.result));
       })
       .catch((error) => {
         alert('Update course error!');

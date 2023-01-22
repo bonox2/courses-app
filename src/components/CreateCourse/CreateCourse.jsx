@@ -2,7 +2,7 @@ import './CreateCourse.css';
 import Input from '../../common/Input/Input';
 import { useState, useMemo, useEffect } from 'react';
 import pipeDuration from '../../helpers/pipeDuration';
-import { useHistory,useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
@@ -15,9 +15,26 @@ export default function CreateCourse({ courses }) {
   const [duration, setDuration] = useState(0);
   const [courseAuthors, setCourseAuthors] = useState([]);
   const allAuthors = useSelector(getAuthors);
-  // const { courseId } = useParams();
-  // const courseInfo = courses.find((course) => course.id === courseId);
+  const [courseInfo, setCourseInfo] = useState(null)
+  const { courseId } = useParams();
+  const [title, setTitle] = useState('')
 
+  useEffect(() => {
+    if (courseId) {
+      //make a request
+      // setCourseInfo() //response
+    }
+  }, [courseId])
+
+
+  useEffect(() => {
+    if(courseInfo){
+      //fill inputs
+      // setTitle(courseInfo.title)
+    }
+  }, [courseInfo])
+  
+  
 
   const availableAuthors = useMemo(
     () =>
@@ -43,17 +60,23 @@ export default function CreateCourse({ courses }) {
       alert('Please enter duration');
       return;
     }
-    const newCourse = {
-      // id: `${Date.now()}`,
-      title: event.target.title.value.trim(),
-      description: event.target.description.value.trim(),
-      creationDate: new Date().toLocaleDateString('en'),
-      duration,
-      authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
-    };
-    console.log('Create new course', newCourse);
-    dispatch(addNewCourseThunk(newCourse));
-
+    if(!courseInfo){
+      const newCourse = {
+        title,
+        description: event.target.description.value.trim(),
+        creationDate: new Date().toLocaleDateString('en'),
+        duration,
+        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
+      };
+      console.log('Create new course', newCourse);
+      dispatch(addNewCourseThunk(newCourse));
+    } else{
+      const updateCourseData = {
+        title, 
+        //...
+      }
+      // dispatch(updateCourseThunk(courseInfo.id, updateCourseData))
+    }
     history.push('/courses');
   }
 
@@ -74,18 +97,19 @@ export default function CreateCourse({ courses }) {
   function deleteAuthorFromCourse(author) {
     setCourseAuthors(courseAuthors.filter(({ id }) => id !== author.id));
   }
-  
+
   return (
     <div>
       <form className="create_course_general" onSubmit={createNewCourse}>
         <span>Title</span>
         <div className="create_course_input_btn">
-        
           <Input
             placeHolderText="asdasdasdasda"
             className="input create_course_input_short"
             name="title"
             required
+            value={title}
+            onChange={e => setTitle(e.target.value().trim())}
           />
           <Button buttonText="Create course" type="submit"></Button>
         </div>
@@ -139,15 +163,19 @@ export default function CreateCourse({ courses }) {
 
         <div className="create_course_part">
           <h3>Course authors</h3>
-          {courseAuthors.length === 0 ? (<span>Author list is empty</span>) : (courseAuthors.map((author) => (
-            <div key={author.id} className="create_course_author_add">
-              <div className="create_course_name">{author.name}</div>
-              <Button
-                buttonText="Delete author"
-                onClick={() => deleteAuthorFromCourse(author)}
-              />
-            </div>
-          ))) }
+          {courseAuthors.length === 0 ? (
+            <span>Author list is empty</span>
+          ) : (
+            courseAuthors.map((author) => (
+              <div key={author.id} className="create_course_author_add">
+                <div className="create_course_name">{author.name}</div>
+                <Button
+                  buttonText="Delete author"
+                  onClick={() => deleteAuthorFromCourse(author)}
+                />
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
