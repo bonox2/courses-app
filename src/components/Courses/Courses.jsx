@@ -11,6 +11,7 @@ import { getCoursesThunk } from '../../redux/courses/thunk';
 import { getUserData } from '../../redux/user/selectors';
 import ProtectedRoute from '../../hoc/ProtectedRoute';
 
+
 export default function Courses() {
   const dispatch = useDispatch();
   const courses = useSelector(getCourses);

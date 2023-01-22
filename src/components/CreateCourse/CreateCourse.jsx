@@ -6,10 +6,11 @@ import { useHistory, useParams } from 'react-router-dom';
 import Button from '../../common/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuthors } from '../../redux/authors/selectors';
-import { addNewCourseThunk } from '../../redux/courses/thunk';
+import { addNewCourseThunk , updateCourseThunk} from '../../redux/courses/thunk';
 import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
+import { getCourse } from '../../services';
 
-export default function CreateCourse({ courses }) {
+export default function CreateCourse() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [duration, setDuration] = useState(0);
@@ -18,19 +19,23 @@ export default function CreateCourse({ courses }) {
   const [courseInfo, setCourseInfo] = useState(null)
   const { courseId } = useParams();
   const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [authors, setAuthors] = useState('')
 
   useEffect(() => {
     if (courseId) {
-      //make a request
-      // setCourseInfo() //response
+       getCourse().then((response) => {
+        setCourseInfo(response.data.result);
+      });
     }
   }, [courseId])
 
 
   useEffect(() => {
     if(courseInfo){
-      //fill inputs
-      // setTitle(courseInfo.title)
+      setTitle(courseInfo.title)
+      setDescription(courseInfo.description)
+      setAuthors(courseInfo.authors)
     }
   }, [courseInfo])
   
@@ -63,19 +68,21 @@ export default function CreateCourse({ courses }) {
     if(!courseInfo){
       const newCourse = {
         title,
-        description: event.target.description.value.trim(),
+        description,
         creationDate: new Date().toLocaleDateString('en'),
         duration,
-        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
+        authors
       };
       console.log('Create new course', newCourse);
       dispatch(addNewCourseThunk(newCourse));
     } else{
       const updateCourseData = {
         title, 
-        //...
+        description,
+        duration,
+        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
       }
-      // dispatch(updateCourseThunk(courseInfo.id, updateCourseData))
+      dispatch(updateCourseThunk(courseInfo.id, updateCourseData))
     }
     history.push('/courses');
   }
@@ -118,7 +125,11 @@ export default function CreateCourse({ courses }) {
           placeholder="Enter description..."
           className="create_course_description"
           name="description"
-          required></textarea>
+          required
+          value={description}
+          onChange={e => setDescription(e.target.value().trim())} 
+          >
+        </textarea>
       </form>
       <div className="create_course_details">
         <form className="create_course_part" onSubmit={createNewAuthor}>

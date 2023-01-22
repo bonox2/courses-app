@@ -2,13 +2,24 @@ import { useParams } from 'react-router-dom';
 import { mockedAuthorsList } from "../../constants";
 import './CourseInfo.css';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getCourse } from '../../services';
 
 
 
-export default function CourseInfo({ courses }) {
+export default function CourseInfo() {
   const { courseId } = useParams();
-  const courseInfo = courses.find((course) => course.id === courseId);
-  console.log(courseInfo);
+  const [courseInfo, setCourseInfo] = useState(null)
+   
+  useEffect(() => {
+    if (courseId) {
+       getCourse().then((response) => {
+        setCourseInfo(response.data.result);
+      });
+    }
+  }, [courseId])
+  
+  
   
   const authorsNames = courseInfo.authors.map(
     (authorId) =>

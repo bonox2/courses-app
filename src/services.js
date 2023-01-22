@@ -62,31 +62,3 @@ export async function getUserData() {
     }
   });
 }
-
-// export async function signUp(userData) {
-//   const response = await fetch(URL + '/register', {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json;charset=utf-8'
-//     },
-//     body: JSON.stringify(userData)
-//   });
-//   const json = await response.json();
-//   if (!response.ok) {
-//     return Promise.reject(json.errors[0]);
-//   }
-//   return json;
-// }
-
-// export async function getUserData() {
-//   const response = await fetch(URL + '/users/me', {
-//     headers: {
-//       Authorization: window.localStorage.getItem('token')
-//     }
-//   });
-//   if (!response.ok) {
-//     return Promise.reject('Get data error');
-//   }
-//   const json = await response.json();
-//   return json;
-// }

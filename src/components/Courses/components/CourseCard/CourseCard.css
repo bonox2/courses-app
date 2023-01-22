@@ -42,10 +42,6 @@
     width:30px;
     padding:  0 0 ;
 }
-@media (max-width:1199.98px){
-} 
-@media (max-width:991.98px){
-}
 @media (max-width:767.98px){
     .header{
         display: flex;
@@ -82,8 +78,4 @@
         width: auto;
         margin-left: 0;
     }
-}
-@media (max-width:575.98px){
-}
-@media (max-width:320px){
 }
