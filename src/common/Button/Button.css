@@ -1,15 +1,1 @@
-.btn{
-    border: 2px solid plum;
-    background: none;
-    padding: 5px 25px;
-    width: min-content;
-    white-space: nowrap;
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn:hover{
-    cursor: pointer;
-}
+ 

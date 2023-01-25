@@ -110,7 +110,7 @@ export default function CreateCourse() {
         <span>Title</span>
         <div className="create_course_input_btn">
           <Input
-            placeHolderText="asdasdasdasda"
+            placeHolderText="Enter title..."
             className="input create_course_input_short"
             name="title"
             required

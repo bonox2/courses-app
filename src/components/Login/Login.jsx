@@ -1,14 +1,12 @@
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import Button from '../../common/Button/Button';
-import Input from '../../common/Input/Input';
+import Button from "../../common/Button/Button";
+import Input from "../../common/Input/Input";
 
-import { setLogInThunk } from '../../redux/user/thunk';
+import { setLogInThunk } from "../../redux/user/thunk";
 
-import './Login.css';
-
-
+import "./Login.css";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -18,40 +16,51 @@ export default function Login() {
     dispatch(
       setLogInThunk({
         email: form.email.value.trim(),
-        password: form.password.value.trim()
+        password: form.password.value.trim(),
       })
     );
   }
   return (
     <>
-      <section className="authorization">
-        <div className="container">
-          <div className="authorization_main">
-            <h2 className="authorization_title">Login</h2>
-            <form className="authorization_form" onSubmit={logIn}>
-              <label htmlFor="email">Email</label>
+      <section className="login-section">
+        <div className="login-box">
+          <h2>Login</h2>
+          <form  onSubmit={logIn}>
+            <div className="user-box">
               <Input
-                required
-                className="input_short input"
+                required 
                 type="email"
                 name="email"
-                placeHolderText="Enter your email"></Input>
-              <label htmlFor="password">Password</label>
+                placeHolderText="Enter your email"
+              ></Input>
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="user-box">
               <Input
-                required
-                className="input_short input"
+                required 
                 type="password"
                 name="password"
-                placeHolderText="Enter your password"></Input>
-              <Button type="submit" buttonText="Login"></Button>
-            </form>
-            <span>
-              If you do not have an account you can{' '}
-              <Link to="/registration" className="link_style">
-                Registration
-              </Link>
-            </span>
-          </div>
+                placeHolderText="Enter your password"
+              ></Input>
+              <label htmlFor="password">Password</label>
+            </div>
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span> 
+              spam
+            </a>
+              {/* <Button type="submit" buttonText="Login">
+                </Button> */}
+          </form>
+
+          <span>
+            If you do not have an account you can{" "}
+            <Link to="/registration" className="link_style">
+              Registration
+            </Link>
+          </span>
         </div>
       </section>
     </>
