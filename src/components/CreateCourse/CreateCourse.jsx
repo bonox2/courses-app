@@ -117,7 +117,7 @@ export default function CreateCourse() {
             value={title}
             onChange={(e) => setTitle(e.target.value.trim())}
           />
-          <Button buttonText="Create course" type="submit"></Button>
+          {courseInfo ? (<Button buttonText="Create course" type="submit"></Button>) : (<Button buttonText="Update course" type="submit"></Button>)}
         </div>
         <span>Description</span>
         <textarea

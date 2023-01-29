@@ -22,45 +22,34 @@ export default function Login() {
   }
   return (
     <>
-      <section className="login-section">
-        <div className="login-box">
-          <h2>Login</h2>
-          <form  onSubmit={logIn}>
-            <div className="user-box">
+      <section className="authorization">
+        <div className="container">
+          <div className="authorization_main">
+            <h2 className="authorization_title">Login</h2>
+            <form className="authorization_form" onSubmit={logIn}> 
+              <label htmlFor="email">Email</label>
               <Input
-                required 
+                required
+                className="input_short input"
                 type="email"
                 name="email"
-                placeHolderText="Enter your email"
-              ></Input>
-              <label htmlFor="email">Email</label>
-            </div>
-            <div className="user-box">
+                placeHolderText="Enter your email"></Input>
+              <label htmlFor="password">Password</label>
               <Input
-                required 
+                required
+                className="input_short input"
                 type="password"
                 name="password"
-                placeHolderText="Enter your password"
-              ></Input>
-              <label htmlFor="password">Password</label>
-            </div>
-            <a href="#">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span> 
-              spam
-            </a>
-              {/* <Button type="submit" buttonText="Login">
-                </Button> */}
-          </form>
-
-          <span>
-            If you do not have an account you can{" "}
-            <Link to="/registration" className="link_style">
-              Registration
-            </Link>
-          </span>
+                placeHolderText="Enter your password"></Input>
+              <Button type="submit" buttonText="Login"></Button>
+            </form>
+            <span>
+              If you have an account you can{' '}
+              <Link to="/registration" className="link_style">
+                Login
+              </Link>
+            </span>
+          </div>
         </div>
       </section>
     </>
