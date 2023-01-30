@@ -1,28 +1,28 @@
-import './CreateCourse.css';
-import Input from '../../common/Input/Input';
-import { useState, useMemo, useEffect } from 'react';
-import pipeDuration from '../../helpers/pipeDuration';
-import { useHistory, useParams } from 'react-router-dom';
-import Button from '../../common/Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAuthors } from '../../redux/authors/selectors';
+import "./CreateCourse.css";
+import Input from "../../common/Input/Input";
+import { useState, useMemo, useEffect } from "react";
+import pipeDuration from "../../helpers/pipeDuration";
+import { useHistory, useParams } from "react-router-dom";
+import Button from "../../common/Button/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthors } from "../../redux/authors/selectors";
 import {
   addNewCourseThunk,
-  updateCourseThunk
-} from '../../redux/courses/thunk';
-import { addNewAuthorThunk, getAuthorsThunk } from '../../redux/authors/thunk';
-import { getCourse } from '../../services';
+  updateCourseThunk,
+} from "../../redux/courses/thunk";
+import { addNewAuthorThunk, getAuthorsThunk } from "../../redux/authors/thunk";
+import { getCourse } from "../../services";
 
 export default function CreateCourse() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [duration, setDuration] = useState(0);
   const [courseAuthors, setCourseAuthors] = useState([]);
   const allAuthors = useSelector(getAuthors);
   const [courseInfo, setCourseInfo] = useState(null);
   const { courseId } = useParams();
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     if (courseId) {
@@ -36,7 +36,12 @@ export default function CreateCourse() {
     if (courseInfo && allAuthors.length > 0) {
       setTitle(courseInfo.title);
       setDescription(courseInfo.description);
-      setCourseAuthors(courseInfo.authors.map(courseAuthorId => allAuthors.find(author => author.id === courseAuthorId)))
+      setCourseAuthors(
+        courseInfo.authors.map((courseAuthorId) =>
+          allAuthors.find((author) => author.id === courseAuthorId)
+        )
+      );
+      setDuration(courseInfo.duration);
     }
   }, [courseInfo, allAuthors]);
 
@@ -57,40 +62,40 @@ export default function CreateCourse() {
   function createNewCourse(event) {
     event.preventDefault();
     if (courseAuthors.length === 0) {
-      alert('Please select at least one author');
+      alert("Please select at least one author");
       return;
     }
     if (duration === 0) {
-      alert('Please enter duration');
+      alert("Please enter duration");
       return;
     }
     if (!courseInfo) {
       const newCourse = {
         title,
         description,
-        creationDate: new Date().toLocaleDateString('en'),
+        creationDate: new Date().toLocaleDateString("en"),
         duration,
-        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
+        authors: courseAuthors.map((courseAuthor) => courseAuthor.id),
       };
-      console.log('Create new course', newCourse);
+      console.log("Create new course", newCourse);
       dispatch(addNewCourseThunk(newCourse));
     } else {
       const updateCourseData = {
         title,
         description,
-        duration,
-        authors: courseAuthors.map((courseAuthor) => courseAuthor.id)
+        duration ,
+        authors: courseAuthors.map((courseAuthor) => courseAuthor.id),
       };
       dispatch(updateCourseThunk(courseInfo.id, updateCourseData));
     }
-    history.push('/courses');
+    history.push("/courses");
   }
 
   function createNewAuthor(event) {
     event.preventDefault();
     const newAuthor = {
       id: `${Date.now()}`,
-      name: event.target.name.value.trim()
+      name: event.target.name.value.trim(),
     };
     dispatch(addNewAuthorThunk(newAuthor));
     console.log(newAuthor);
@@ -109,7 +114,7 @@ export default function CreateCourse() {
       <form className="create_course_general" onSubmit={createNewCourse}>
         <span>Title</span>
         <div className="create_course_input_btn">
-          <Input 
+          <Input
             placeHolderText="Enter title..."
             className="input create_course_input_short"
             name="title"
@@ -117,7 +122,11 @@ export default function CreateCourse() {
             value={title}
             onChange={(e) => setTitle(e.target.value.trim())}
           />
-          {courseInfo ? (<Button buttonText="Update course" type="submit"></Button>) : (<Button buttonText="Create course" type="submit"></Button>)} 
+          {courseInfo ? (
+            <Button buttonText="Update course" type="submit"></Button>
+          ) : (
+            <Button buttonText="Create course" type="submit"></Button>
+          )}
         </div>
         <span>Description</span>
         <textarea
@@ -126,12 +135,12 @@ export default function CreateCourse() {
           name="description"
           required
           value={description}
-          onChange={(e) => setDescription(e.target.value.trim())}></textarea>
+          onChange={(e) => setDescription(e.target.value.trim())}
+        ></textarea>
       </form>
       <div className="create_course_details">
         <form className="create_course_part" onSubmit={createNewAuthor}>
           <h3>Add author</h3>
-          <span className="create_course_subtitle">Author name</span>
           <Input
             placeHolderText="Enter author name..."
             className="input create_course_input_long"
@@ -156,13 +165,12 @@ export default function CreateCourse() {
 
         <div className="create_course_part">
           <h3>Duration</h3>
-          <span className="create_course_subtitle">Duration</span>
           <Input
             placeHolderText="Enter duration in minutes..."
             className="input create_course_input_long"
             type="number"
             value={duration}
-            onChange={(e) => setDuration(Number(e.target.value))}
+            onChange={(e) => setDuration(e.target.value)}
           />
           <div className="duration_time">
             Duration: {pipeDuration(duration)}

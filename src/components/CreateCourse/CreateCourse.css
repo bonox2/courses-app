@@ -38,22 +38,16 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-}
-.create_course_subtitle{
-    margin-right: auto;
-}
+} 
 .duration_time{
     margin-top: 15px;
     font-size: 28px;
-    margin-right:auto ;
+    margin-right:0 auto ;
     font-weight: 400;
-}
-.duration_time span{
-    font-weight: 500;
-}
+} 
 
 .input_short{
-    width: 250px;
+    width: 350px;
 }
 .input_long{
     width: 500px;
