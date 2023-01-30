@@ -10,7 +10,7 @@ import { getUserData } from "../../../../redux/user/selectors";
 
 export default function CourseCard({ course }) {
   const dispatch = useDispatch();
-  const userData = useSelector(getUserData)
+  const userData = useSelector(getUserData);
   const allAuthors = useSelector(getAuthors);
   const authorsNames = course.authors
     .map(
@@ -43,19 +43,19 @@ export default function CourseCard({ course }) {
           <Link to={`/courses/${course.id}`} className="btn">
             Show course
           </Link>
-          {userData.role === "admin" && (<>
-            <Link to={`/courses/update/${course.id}`} className="btn">
-              &#128393;
-            </Link>
-            <Button
-              buttonText="	&#128465;"
-              onClick={() => {
-                dispatch(removeCourseThunk(course.id));
-              }}
-            ></Button>
-          </>
+          {userData.role === "admin" && (
+            <>
+              <Link to={`/courses/update/${course.id}`} className="btn">
+                &#128393;
+              </Link>
+              <Button
+                buttonText="	&#128465;"
+                onClick={() => {
+                  dispatch(removeCourseThunk(course.id));
+                }}
+              ></Button>
+            </>
           )}
-          
         </div>
       </dl>
     </div>

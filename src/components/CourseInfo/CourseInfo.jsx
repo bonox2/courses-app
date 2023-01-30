@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { mockedAuthorsList } from '../../constants';
-import './CourseInfo.css';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getCourse } from '../../services';
+import { useParams } from "react-router-dom";
+import { mockedAuthorsList } from "../../constants";
+import "./CourseInfo.css";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getCourse } from "../../services";
 
 export default function CourseInfo() {
   const { courseId } = useParams();
@@ -22,11 +22,14 @@ export default function CourseInfo() {
 
   if (isLoading) {
     return (
-      <section className="course_info_main">
-        <div className="container">
-          <h2>Wait, the course is loading...</h2>
-        </div>
-      </section>
+      <div className="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     );
   }
 
@@ -48,7 +51,7 @@ export default function CourseInfo() {
       (authorId) =>
         mockedAuthorsList.find((author) => authorId === author.id)?.name
     )
-    .join(' ');
+    .join(" ");
   return (
     <>
       <section className="course_info_main">

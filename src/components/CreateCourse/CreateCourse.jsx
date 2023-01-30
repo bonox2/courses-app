@@ -109,7 +109,7 @@ export default function CreateCourse() {
       <form className="create_course_general" onSubmit={createNewCourse}>
         <span>Title</span>
         <div className="create_course_input_btn">
-          <Input
+          <Input 
             placeHolderText="Enter title..."
             className="input create_course_input_short"
             name="title"
@@ -117,7 +117,7 @@ export default function CreateCourse() {
             value={title}
             onChange={(e) => setTitle(e.target.value.trim())}
           />
-          {courseInfo ? (<Button buttonText="Create course" type="submit"></Button>) : (<Button buttonText="Update course" type="submit"></Button>)}
+          {courseInfo ? (<Button buttonText="Update course" type="submit"></Button>) : (<Button buttonText="Create course" type="submit"></Button>)} 
         </div>
         <span>Description</span>
         <textarea
