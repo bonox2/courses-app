@@ -38,6 +38,7 @@
     display: flex;
     gap: 10px;
 }
+
 .buttons_section button:not(:first-child){
     width:30px;
     padding:  0 0 ;

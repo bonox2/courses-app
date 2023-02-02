@@ -45,11 +45,12 @@ export default function CourseCard({ course }) {
           </Link>
           {userData.role === "admin" && (
             <>
-              <Link to={`/courses/update/${course.id}`} className="btn">
+              <Link to={`/courses/update/${course.id}`} className="btn edit_btn">
                 &#128393;
               </Link>
               <Button
                 buttonText="	&#128465;"
+                className="delete_btn"
                 onClick={() => {
                   dispatch(removeCourseThunk(course.id));
                 }}
